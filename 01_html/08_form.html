@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>HTML 폼데이터</h1>
+
+    <ul>
+      <li>
+        <b>form</b>: 서버에서 필요로 하는 데이터를 사용자로부터 입력받아
+        전송하는 태그
+        <ul>
+            <li><b>method</b>를 get 으로 지정하면 데이터 url에 포함되고 post는 포함되지 않는다.</li>
+            <li><b>novalidate</b> 유효성 검사를 생략한다.</li>
+        </ul>
+      </li>
+      <li>
+        <b>input</b>: 사용자로부터 데이터를 입력받는 태그
+        <ul>
+            <li>닫는 태그가 필요없다.</li>
+          <li>
+            <b>type</b> 속성을 통해서 다양한 형태의 데이터를 입력할 수 있다.
+            <ul>
+              <li>text</li>
+              <li>password</li>
+              <li>number: min, max 설정가능</li>
+              <li>checkbox</li>
+              <li>
+                <b>radio</b>: 여러 옵션중 하나만 선택할 수 있다. (name 값이 같은
+                타입)
+              </li>
+            </ul>
+          </li>
+          <li><b>action</b> 속성은 데이터를 제출할 서버를 지정한다.</li>
+          <li><b>name</b>은 서버에 전송하는 데이터의 이름</li>
+          
+          <li><b>required</b>로 필수 입력값을 지정할 수 잇다.</li>
+          <li><b>readonly</b>데이터를 읽는것만 가능하다.</li>
+          
+          <li><b>disabled</b>항목을 비활성화 한다.</li>
+          
+          </ul>
+          <br />
+          <li>
+            <b>label</b>: input 과 글씨를 연결할 수 있다.
+            <ul>
+              <li>글씨를 클릭하면 해당 input을 클릭한 것과 동일한 효과</li>
+              <li>1) 글씨를 input 과 함께 label 태그로 감싼다.</li>
+              <li>
+                2) input id 값을 지정하고 label for값을 input 의 id 로 지정한다.
+              </li>
+            </ul>
+          </li>
+          <br/>
+          <li>
+            <b>button</b>: form 안에 버튼을 작성하면 특정 기능을 수행한다.
+            <ul>
+              <li>type 에 따라서 다른 동작을 한다.</li>
+              <li>type 의 기본값은 submit으로 데이터를 서버에 전송한다.</li>
+              <li>type reset은 form 내의 모든 input 값을 초기화 한다.</li>
+              <li>button form 속성에 form 태그의 id 값을 지정하면 태그 밖에 있어도 동작한다.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <br />
+    <form action="" method="post" id="signUp" novalidate>
+      <ul>
+        <li>
+          <label>이름: <input type="text" name="username" disabled /></label>
+        </li>
+        <li>이메일: <input type="email" readonly value="test@test.com"/></li>
+        <li>비밀번호: <input type="password" required /></li>
+        <li>나이: <input type="number" min="0" max="100" /></li>
+        <li>
+          취미:
+          <ul>
+            <li>농구<input type="checkbox" /></li>
+            <li>축구<input type="checkbox" /></li>
+            <li>웨이트<input type="checkbox" /></li>
+            <li>공부<input type="checkbox" /></li>
+          </ul>
+        </li>
+        <li>
+          성별:
+          <ul>
+            <li>
+              <label>남 <input type="radio" name="gender" id="" /></label>
+            </li>
+            <li>
+              <label for="female">여</label>
+              <input type="radio" name="gender" id="female" />
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <input type="button" value="인풋버튼">
+      <button>아무것도 안함</button>
+      <button type="reset">초기화</button>
+    </form>
+    <button form="signUp">등록</button>
+    
+<br/><br /><a href="/">메인페이지로</a>
+  </body>
+</html>

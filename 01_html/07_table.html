@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Table</title>
+
+    <style>
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td {
+        border: 1px solid black;
+      }
+      th {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Table: HTML 표 다루기</h1>
+    <ul>
+      <li><b>caption</b>: 표의 제목</li>
+      <li><b>thead</b>: 데이터의 제목을 포함하는 태그</li>
+      <li><b>tbody</b>: 표의 내용을 포함하는 태그</li>
+      <li><b>tfoot</b>: 표의 요약부분을 나타내는 태그</li>
+      <li><b>tr</b>: table row, 행을 추가</li>
+      <li><b>th</b>: 표 목록 제목, <b>td</b>: 표 데이터</li>
+    </ul>
+    <table>
+      <caption>
+        성적표
+      </caption>
+      <thead>
+        <tr>
+          <th>반</th>
+          <th>이름</th>
+          <th>나이</th>
+          <th>국어</th>
+          <th>수학</th>
+          <th>영어</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">A반</td>
+          <td>황보석</td>
+          <td>31</td>
+          <td colspan="2">100점</td>
+          <td>90점</td>
+        </tr>
+        <tr>
+          <td>김정철</td>
+          <td>33</td>
+          <td>60점</td>
+          <td rowspan="2" colspan="2">90점</td>
+        </tr>
+        <tr>
+          <td rowspan="2">B반</td>
+          <td>김광훈</td>
+          <td>35</td>
+          <td>40점</td>
+        </tr>
+        <tr>
+          <td>이명수</td>
+          <td>37</td>
+          <td colspan="3">20점</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">합계</th>
+          <td>220점</td>
+          <td>300점</td>
+          <td>290점</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <br /><a href="/">메인페이지로</a>
+  </body>
+</html>
