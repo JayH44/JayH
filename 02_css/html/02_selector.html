@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS 선택자</title>
+    <link rel="stylesheet" href="../css/02_selector.css" />
+  </head>
+  <body>
+    <h1>CSS 선택자</h1>
+    <p>CSS 선택자란 스타일을 적용하고자 하는 요소를 골라내는 것이다.</p>
+    <h2>선택자의 종류</h2>
+    <ul>
+      <li class="first">
+        <h3>전채 선택자(*)</h3>
+        <p>전체 선택자는 html 모든 요소에 적용된다. 우선순위 점수 0점 이다.</p>
+      </li>
+      <li>
+        <h3 class="red">타입 선택자</h3>
+        <p>
+          태그명을 통해서 요소를 선택한다. 문서내에 있는 해당하는 타입의 요소를
+          모두 선택한다. 우선순위 점수 1점 이다.
+        </p>
+      </li>
+      <li>
+        <h3 class="red big">클래스 선택자(.)</h3>
+        <p class="red">
+          특정 클래스값을 가진 요소를 모두 선택한다. 클래스 값은 요소의 class
+          속성을 통해서 지정한다. <br />
+          띄어쓰기를 통해서 여러개의 클래스를 지정할 수 있다. <br />
+          같은 클래스 값을 여러 요소가 가질수 있다. <br />
+          우선순위 10점 이다.
+        </p>
+      </li>
+      <li class="target">
+        <h3 id="border">아이디 선택자 (#)</h3>
+        <p>
+          특정 id 값을 가진 요소를 선택한다. 아이디 값은 요소의 id 속성을 통해서
+          지정한다. <br />
+          아이디 값은 여러개를 지정할 수 없다. <br />
+          문서내의 아이디값은 유일해야 한다. <br />
+          우선순위 점수는 100점이다.
+        </p>
+      </li>
+      <li>
+        <h3>일치선택자</h3>
+        <p>여러선택자에 모두 일치하는 요소만을 선택한다.</p>
+      </li>
+      <li>
+        <h3>자식선택자(>)</h3>
+        <p>특정요소의 자식 요소만을 선택할 수 있다.</p>
+      </li>
+      <li>
+        <h3>후손 선택자</h3>
+        <p>
+          특정 요소의 후손 요소를 모두 선택할 수 있다. 띄어쓰기를 통해서
+          구분한다.
+        </p>
+      </li>
+      <li>
+        <h3>형제 선택자 (~, +)</h3>
+      </li>
+      <li>
+        <h3>가상 클래스 선택자</h3>
+        <p>
+          특정 조건을 만족했을때(ex 요소에 마우스가 올라갔을때) 가상의 클래스가
+          생긴 것처럼 동작한다. <br />
+          <strong>hover, active, nth-child()</strong>
+        </p>
+      </li>
+      <li>
+        <h3>가상 요소</h3>
+        <p>
+          html 문서에 포함되지 않았지만 디자인적으로 필요할 대 가상으로 요소를
+          만들어낸다.
+        </p>
+      </li>
+    </ul>
+    <h2>상속과 우선순위</h2>
+    <p>글씨와 관련된 속성은 후손 요소에게도 상속된다.</p>
+    <p id="color" class="color" style="color: darkmagenta">
+      같은 속성에서 값을 여러개를 적용하면 기본적으로 마지막에 적용된 값이
+      적용된다. <br />
+      인라인 방식은 우선순위 점수가 1000점이기 때문에 주의해야한다. <br />
+      !important 가 가장 최우선 순위이다. <br />
+      점수가 같을때는 마지막에 작성한 코드가 적용이 된다. <br />
+      <br />
+      !important > 인라인 > (#) id 선택자 > (.) 클래스 선택자 > 태그 선택자 >
+      (*) 전체선택자
+    </p>
+    <br /><a href="/index.html">메인페이지로</a>
+  </body>
+</html>

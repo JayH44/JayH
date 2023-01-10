@@ -1,0 +1,47 @@
+/* :root {
+  font-size: 30px;
+} */
+
+.size {
+  font-size: 24px;
+}
+
+.size p {
+  font-size: 0.5rem;
+}
+
+.weight h3 {
+  font-weight: 600;
+  font-weight: normal;
+}
+
+.align {
+  text-align: justify;
+}
+
+.height {
+  line-height: 30px;
+}
+
+.spacing {
+  word-spacing: 3px;
+  letter-spacing: -0.04em;
+}
+
+.transform h3 {
+  text-transform: uppercase;
+}
+
+.decoration h3 {
+  text-decoration: 4px dashed black underline;
+  /* style, color, line, thickness */
+  color: red;
+  color: rgb(255, 255, 255);
+  color: #ffff00;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+html {
+  font-family: sans-serif, Arial, "Franklin Gothic Medium", "Arial Narrow",
+    Arial, sans-serif;
+}

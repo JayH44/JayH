@@ -1,0 +1,49 @@
+body {
+  height: 2000px;
+}
+.container {
+  width: 300px;
+  height: 300px;
+  padding: 30px;
+
+  border: 10px solid rgba(0, 0, 0, 0.2);
+  background-color: #eee;
+  background-image: url("../images/img01.jpg");
+
+  overflow: hidden;
+  overflow-y: scroll;
+
+  /* 가로, 세로순 */
+  background-size: 200px;
+
+  /* 가로나 세로중 더 큰 축에 맞춰서 */
+  /* background-size: contain; */
+
+  /* 가로나 세로중 더 작은 축에 맞춰서 */
+  /* background-size: cover; */
+
+  /* x축, y축 순 숫자 (픽셀, 퍼센트) 시에 순서 지키고
+   키워드시에는 상관없음 */
+  background-position: -70px 10px;
+  background-position: left top;
+  /* background-position: top; */
+
+  background-repeat: no-repeat;
+
+  /* 배경의 시작점을 지정 */
+  background-origin: border-box;
+
+  /* 배경의 적용 범위를 지정 */
+  background-clip: padding-box;
+
+  background-attachment: local;
+}
+
+.container:nth-child(3) {
+  margin-top: 200px;
+}
+
+/* .container:hover {
+  background-repeat: repeat;
+  background-size: 50px;
+} */

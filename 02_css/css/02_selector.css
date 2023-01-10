@@ -1,0 +1,92 @@
+/* 전체 선택자 */
+* {
+  margin: 0;
+}
+
+body {
+  color: red;
+}
+
+/* 타입 선택자 */
+ul {
+  margin-top: 30px;
+  color: blue;
+}
+
+/* 클래스 선택자 */
+.red {
+  color: red;
+}
+.big {
+  font-size: 30px;
+}
+p.red {
+  color: lightcoral;
+}
+
+/* 아이디 선택자 */
+#border {
+  border: 1px solid black;
+}
+
+/* 자식 선택자 */
+li > p {
+  font-size: 14px;
+}
+
+/* 후손 선택자 */
+ul p {
+  margin-top: 10px;
+}
+
+/* 형제 선택자 */
+.target ~ li {
+  background-color: rgb(236, 131, 131);
+}
+
+/* 인접 형제 선택자*/
+li + li {
+  background-color: #eee;
+}
+
+/* 가상 클래스 선택자 */
+h3:hover {
+  color: blue;
+}
+
+h3:active {
+  color: #ccc;
+}
+
+li:nth-child(3) {
+  border: 1px solid blue;
+}
+
+/* 가상 요소 */
+li::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: black;
+}
+자 li::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: red;
+}
+
+#color {
+  color: yellow;
+}
+
+.color {
+  color: red;
+  color: blue !important;
+}
+
+p#color {
+  color: green;
+}
