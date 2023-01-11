@@ -32,7 +32,3 @@ li a:hover {
   color: blue;
   background-color: #eee;
 }
-
-div:nth-of-type(2) {
-  margin-left: 20px;
-}

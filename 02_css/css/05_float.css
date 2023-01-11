@@ -33,7 +33,7 @@ header {
 
 .gnbList {
   padding: 0;
-  /* display: inline-block; */
+  display: inline-block;
   width: 250px;
   margin: 0 auto;
 }

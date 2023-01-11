@@ -13,6 +13,11 @@ ul {
   color: blue;
 }
 
+/* 아이디 선택자 */
+#border {
+  border: 1px solid black;
+}
+
 /* 클래스 선택자 */
 .red {
   color: red;
@@ -22,11 +27,6 @@ ul {
 }
 p.red {
   color: lightcoral;
-}
-
-/* 아이디 선택자 */
-#border {
-  border: 1px solid black;
 }
 
 /* 자식 선택자 */
