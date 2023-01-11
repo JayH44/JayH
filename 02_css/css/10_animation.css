@@ -1,0 +1,72 @@
+body {
+  height: 2000px;
+}
+
+.container {
+  width: 500px;
+  height: 500px;
+  padding: 10px;
+
+  border: 3px solid black;
+}
+
+.container .box {
+  width: 100px;
+  height: 100px;
+
+  background-color: red;
+  animation-name: fadeIn, scaleUp;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-iteration-count: 2;
+  /* animation-direction: alternate; */
+  animation-fill-mode: both;
+
+  animation: scaleUp 2s 1s ease 2 normal both,
+    fadeIn 2s 1s linear infinite alternate;
+}
+
+/* from~to: 원래상태인경우 from 생략가능
+%: 원래상태인경우 0% 생략가능 */
+@keyframes scaleUp {
+  33% {
+    width: 200px;
+  }
+  66% {
+    width: 150px;
+  }
+  100% {
+    width: 200px;
+    background-color: blue;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 구현의도에 따라 from to 다 가능 */
+.boxA {
+  width: 50px;
+  height: 50px;
+
+  border: 3px solid black;
+  border-radius: 50%;
+
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+
+  animation: locationUp 1s both, fadeIn 1s both;
+}
+
+@keyframes locationUp {
+  to {
+    transform: translateY(-50px);
+  }
+}

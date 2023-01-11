@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* 주축 정렬 */
+  align-items: flex-start; /* 교차축 정렬 */
+  flex-wrap: nowrap; /* 넘치는 아이템 줄처리 */
+  align-content: flex-end;
+
+  /* width: 400px; */
+  height: 300px;
+
+  border: 3px solid black;
+  overflow-x: scroll;
+}
+
+.container .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+
+  background-color: red;
+  border: 3px solid blue;
+
+  flex-basis: 150px; /* 최소너비 기준값 */
+  /* flex-shrink: 0; */
+}
+
+.container .item:first-child {
+  flex-shrink: 1; /* 공간이 부족할때 줄이는 비율, 기본값 1 */
+  flex-grow: 1; /* 공간이 남을때 늘리는 비율, 기본값 0*/
+}
+
+.container .item:nth-child(2) {
+  flex-grow: 1;
+}
+
+.container .item:nth-child(3) {
+  flex: 1, 1;
+}
