@@ -1,0 +1,94 @@
+.container {
+  width: 500px;
+  padding: 10px;
+
+  border: 3px solid black;
+}
+
+.container .box {
+  width: 100px;
+  height: 100px;
+  margin: 10px 0;
+
+  border: 3px solid red;
+  box-sizing: border-box;
+
+  text-align: center;
+  line-height: 100px;
+  transition: 0.5s;
+}
+
+.container.translate {
+  perspective: 500px;
+}
+
+.container.translate .box:nth-of-type(1):hover {
+  transform: translateX(100px);
+}
+
+.container.translate .box:nth-of-type(2):hover {
+  transform: translateY(-50px);
+}
+
+.container.translate .box:nth-of-type(3):hover {
+  transform: translate(30px, 30px);
+}
+.container.translate .box:last-child:hover {
+  transform: translateZ(-100px);
+}
+
+.container.rotate {
+  /* 3d관점이 필요한 요소에 넣음 */
+  perspective: 500px;
+}
+
+.container.rotate .box {
+  transform-origin: left;
+}
+
+.container.rotate .box:hover {
+  transform: rotateZ(20deg);
+}
+
+.container.rotate .box.x:hover {
+  transform: rotateX(45deg);
+}
+
+.container.rotate .box.y:hover {
+  transform: rotateY(90deg);
+}
+
+.container.scale .box.x {
+  transform-origin: left;
+}
+.container.scale .box.x:hover {
+  transform: scaleX(120%);
+}
+
+.container.scale .box.y {
+  transform-origin: bottom;
+}
+
+.container.scale .box.y:hover {
+  transform: scaleY(1.2);
+}
+
+.container.scale .box.xy:hover {
+  transform: scale(1.2);
+}
+
+.container.skew .box.x:hover {
+  transform: skewX(20deg);
+}
+
+.container.skew .box.y:hover {
+  transform: skewY(20deg);
+}
+
+.container.skew .box.xy:hover {
+  transform: skew(20deg, 20deg);
+}
+
+.container.complex .box:hover {
+  transform: translate(50px) scale(2) rotate(30deg) skew(20deg);
+}
