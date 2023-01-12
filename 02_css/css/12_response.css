@@ -1,0 +1,58 @@
+html {
+  font-size: 10px;
+}
+
+:root {
+  /* html과 동일하지만 우선순위가 높음 */
+  font-size: 20px;
+}
+
+body {
+  font-size: 24px;
+}
+
+div {
+  width: 100%;
+  font-size: 1.2em;
+
+  /* 최상위 요소 :root, html */
+  font-size: 2rem;
+}
+
+.container {
+  width: 500px;
+  height: 300px;
+  border: 3px solid black;
+}
+
+.container .box {
+  width: 50vw;
+  height: 50vh;
+  background-color: red;
+  width: 30vmin;
+  height: 30vmax;
+
+  /* width: 200px; */
+  /* height: 150px; */
+}
+
+@media (max-width: 999px) {
+  .container {
+    width: 200px;
+  }
+
+  .container .box {
+    width: 200px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    background-color: #ddd;
+  }
+
+  .container .box {
+    width: 100px;
+    height: 100px;
+  }
+}
