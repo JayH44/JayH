@@ -18,7 +18,8 @@ const user = {
 };
 
 console.log(user.name, user['age'], user.height); */
-/* 객체는 없는 value 를 참조해도 undefined */
+/* 객체는 없는 value 를 참조해도 undefined 
+하지만 없는 value 의 value 를 참조하면 에러 */
 
 const user02 = {
   name: '정철',

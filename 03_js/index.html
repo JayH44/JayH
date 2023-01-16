@@ -8,5 +8,17 @@
   </head>
   <body>
     <script src="./01_variable.js"></script>
+    <script>
+      let val = Math.floor(Math.random() * 100);
+      while (true) {
+        const num = parseInt(window.prompt('1~100사이의 숫자를 입력해 주세요'));
+        if (!num) break;
+        if (num === val) {
+          alert('정답입니다');
+          break;
+        } else if (num < val) alert('up');
+        else alert('down');
+      }
+    </script>
   </body>
 </html>
