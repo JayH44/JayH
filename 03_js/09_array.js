@@ -60,3 +60,19 @@ const arrE2 = {
 };
 
 arrE2.arrConsole();
+
+let userList = [
+  { id: 1, name: 'seok', age: 31 },
+  { id: 2, name: 'minsu', age: 29 },
+  { id: 3, name: 'chelsu', age: 38 },
+];
+
+//fillter 는 조건에 맞는 배열 리턴
+
+let modifiedList = userList.filter((user) => user.age > 30);
+console.log(modifiedList);
+
+const result03 = userList.filter((_, idx) => idx % 2).map((user) => user.name);
+console.log(result03);
+
+//메서드 체이닝

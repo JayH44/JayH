@@ -1,0 +1,78 @@
+@import url(../reset.css);
+
+header {
+  display: flex;
+  gap: 100px;
+  height: 40px;
+}
+
+header .logo {
+  height: 100%;
+  line-height: 100%;
+
+  font-weight: 600;
+  position: absolute;
+  top: 10px;
+}
+
+header .gnbList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  gap: 5vw;
+}
+
+header .gnbList li a {
+  width: 100px;
+  height: 100%;
+  display: block;
+  text-align: center;
+}
+
+main .container {
+  height: 300px;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+}
+
+main .container .box {
+  width: 100px;
+  height: 150px;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+main .container .box a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s;
+}
+
+main .container .box:nth-of-type(1) a {
+  background: url('../01_html/assets/img01.jpg') center / cover no-repeat;
+}
+
+main .container .box:nth-of-type(2) a {
+  background: url('../01_html/assets/img02.png') center / cover no-repeat;
+}
+
+main .container .box:nth-of-type(3) a {
+  background: url('../01_html/assets/img03.png') center / cover no-repeat;
+}
+
+main .container .box:nth-of-type(1) a:hover {
+  transform: scale(1.4);
+}
+
+main .container .box:nth-of-type(2) a:hover {
+  transform: scale(1.4);
+}
+
+main .container .box:nth-of-type(3) a:hover {
+  transform: scale(1.4);
+}

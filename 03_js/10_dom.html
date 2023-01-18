@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <style>
+    .container {
+      width: 500px;
+      height: 300px;
+      border: 3px solid black;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      box-sizing: border-box;
+    }
+
+    .box.on {
+      border: 3px solid yellow;
+    }
+
+    .box.on:hover {
+      border-color: red;
+    }
+
+    .changeBox {
+      width: 500px;
+      height: 300px;
+      border: 3px solid black;
+    }
+
+    .changeBox .item {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+    }
+  </style>
+
+  <body>
+    <h1>DOM과 이벤트</h1>
+    <div class="container" id="container">
+      <div class="box" onclick="alert('클릭이벤트 발생')"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <button id="btn2">버튼</button>
+
+    <div class="changeBox">
+      <div class="item"></div>
+      <button data-color="red" data-box-width="200px">빨강</button>
+      <button data-color="blue">파랑</button>
+      <button data-color="yellow">노랑</button>
+      <button data-color="black">검정</button>
+
+      <input type="text" placeholder="Color" id="changeInput" />
+    </div>
+
+    <script>
+      let contianer = document.getElementById('container');
+      console.log(contianer);
+
+      let boxList = document.getElementsByClassName('box');
+      console.log(boxList);
+
+      let boxElem = document.querySelector('.box');
+      console.log(boxElem);
+
+      let boxArr = document.querySelectorAll('.box');
+      console.log(boxArr);
+
+      container.style.cssText = `
+      border-color:blue;
+      background-color:#eee;`;
+
+      for (let i = 0; i < boxList.length; i++)
+        boxList[i].style.backgroundColor = 'yellow';
+
+      boxArr.forEach((box) => (box.style.backgroundColor = 'green'));
+
+      console.log(boxArr[0].classList);
+      boxArr[0].classList.add('on');
+      //   boxArr[0].classList.remove('on');
+      //   boxArr[0].classList.contains('on');
+      boxArr.forEach((box) => box.classList.toggle('on'));
+      //   boxArr[1].onclick = () => console.log('click');
+      //   boxArr[1].onclick = () => console.log('클릭');
+      boxArr[2].addEventListener('click', () => console.log('click!'));
+
+      let consoleClick = () => console.log('클릭!!');
+
+      boxArr[2].addEventListener('click', consoleClick);
+      boxArr[2].removeEventListener('click', consoleClick);
+
+      boxArr.forEach((box) =>
+        box.addEventListener(
+          'click',
+          () => (box.style.backgroundColor = 'blue')
+        )
+      );
+
+      let btn = document.querySelector('#btn2');
+
+      document
+        .querySelector('#btn2')
+        .addEventListener(
+          'click',
+          () => (container.style.backgroundColor = 'blue')
+        );
+
+      //   document
+      //     .querySelector('#btnRed')
+      //     .addEventListener(
+      //       'click',
+      //       () => (itemBox.style.backgroundColor = 'red')
+      //     );
+
+      //   document
+      //     .querySelector('#btnBlue')
+      //     .addEventListener(
+      //       'click',
+      //       () => (itemBox.style.backgroundColor = 'blue')
+      //     );
+
+      //   document
+      //     .querySelector('#btnYellow')
+      //     .addEventListener(
+      //       'click',
+      //       () => (itemBox.style.backgroundColor = 'Yellow')
+      //     );
+
+      //   document
+      //     .querySelector('#btnBlack')
+      //     .addEventListener(
+      //       'click',
+      //       () => (itemBox.style.backgroundColor = 'Black')
+      //     );
+
+      let itemBox = document.querySelector('.item');
+      let btnList = document.querySelectorAll('.changeBox button');
+      //   let colorList = ['red', 'blue', 'yellow', 'black'];
+
+      //   for (let i = 0; i < btnList.length; i++) {
+      //     btnList[i].addEventListener(
+      //       'click',
+      //       () => (itemBox.style.backgroundColor = colorList[i])
+      //     );
+      //   }
+
+      //   btnList.forEach((btn, idx) =>
+      //     btn.addEventListener(
+      //       'click',
+      //       //   () => (itemBox.style.backgroundColor = colorList[idx])
+      //       (e) => {
+      //         // console.log(e);
+      //         itemBox.style.backgroundColor = btn.dataset.color;
+      //         itemBox.style.width = btn.dataset.boxWidth;
+      //       }
+      //     )
+      //   );
+
+      //이벤트 위임
+      let changeBox = document.querySelector('.changeBox');
+      changeBox.addEventListener('click', (e) => {
+        // alert('체인지 박스 클릭');
+        console.log(
+          `e.target은 ${e.target}, e.currentTarget은 ${e.currentTarget}`
+        );
+        if (e.target.matches('.changeBox button')) {
+          itemBox.style.backgroundColor = e.target.dataset.color;
+          itemBox.style.width = e.target.dataset.boxWidth;
+        }
+        if (e.target === e.currentTarget) alert('체인지 박스 클릭');
+      });
+
+      let changeInput = document.getElementById('changeInput');
+      changeInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          itemBox.style.backgroundColor = e.target.value;
+          changeInput.value = '';
+          changeInput.focus();
+        }
+      });
+    </script>
+  </body>
+</html>

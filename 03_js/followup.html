@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>끝말잇기</title>
+  </head>
+  <body>
+    <h1>끝말잇기</h1>
+    <h2 id="keyword">제시어</h2>
+    <button id="btnChange">시작</button>
+    <input type="text" id="inputKeyword" />
+    <button id="btnSubmit">등록</button>
+
+    <script>
+      let keyword = document.getElementById('keyword'),
+        inputKeyword = document.getElementById('inputKeyword'),
+        btnSubmit = document.getElementById('btnSubmit'),
+        btnChange = document.getElementById('btnChange');
+
+      let testArr = [];
+      let lose = () => {
+        keyword.innerText = `${keyword.innerText} + 패배:{${inputKeyword.value}}`;
+        testArr = [];
+        inputKeyword.value = '';
+        return;
+      };
+
+      let wordPlay = () => {
+        if (
+          keyword.innerText[keyword.innerText.length - 1] ===
+          inputKeyword.value[0]
+        ) {
+          if (testArr.find((arr) => arr === inputKeyword.value)) {
+            alert('중복 단어 입니다. 패배');
+            lose();
+          } else {
+            alert('규칙에 맞습니다.');
+            keyword.innerText = inputKeyword.value;
+            testArr.push(inputKeyword.value);
+            console.log(testArr);
+          }
+        } else {
+          alert('규칙에 맞지 않습니다. 패배');
+          lose();
+        }
+        inputKeyword.value = '';
+        inputKeyword.focus();
+      };
+
+      btnSubmit.addEventListener('click', wordPlay);
+
+      inputKeyword.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          btnSubmit.click();
+        }
+      });
+
+      let kakao = ['어피치', '초롱초롱', '튜브', '프로도', '라이언', '프로도'];
+
+      function randomItem(a) {
+        return a[Math.floor(Math.random() * a.length)];
+      }
+
+      btnChange.addEventListener('click', () => {
+        keyword.innerText = randomItem(kakao);
+        inputKeyword.focus();
+      });
+    </script>
+  </body>
+</html>

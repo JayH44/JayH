@@ -18,3 +18,13 @@ let bar = function () {
 };
 
 bar();
+
+function repeat(n, callback) {
+  for (let i = 0; i < n; i++) {
+    callback();
+  }
+}
+
+repeat(7, function () {
+  console.log(sum(5, 7));
+});
