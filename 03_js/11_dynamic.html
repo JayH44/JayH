@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>동적페이지</title>
+    <style>
+      .container {
+        width: 500px;
+        border: 3px solid black;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>동적 사이트 만들기</h1>
+
+    <script>
+      let divElem = document.createElement('div');
+      let classAttr = document.createAttribute('class');
+
+      let divElem2 = document.createElement('div');
+      let classAttr2 = document.createAttribute('class');
+
+      classAttr.value = 'container';
+      divElem.setAttributeNode(classAttr);
+      document.body.appendChild(divElem);
+
+      classAttr2.value = 'box';
+      divElem2.setAttributeNode(classAttr2);
+      divElem2.setAttribute('class', 'box01');
+      divElem2.classList.add('box');
+      divElem.appendChild(divElem2);
+
+      let textNode = document.createTextNode('텍스트 노드 생성!');
+      divElem2.appendChild(textNode);
+      //   divElem2.innerText = '텍스트 노드 다르게 추가!';
+
+      const titleElem = document.querySelector('h1');
+      titleElem.innerText += '!';
+
+      //   divElem.innerText = '<div class="box"></div>';
+      //   divElem.innerText = '문자열 어디갔냐';
+      //   divElem.innerHTML = '<div class="box"></div>';
+
+      //   console.log(divElem.innerHTML);
+      let str = '';
+      for (let i = 0; i < 10; i++) {
+        str += '<div class="box"></div>';
+      }
+      divElem.innerHTML += str;
+      // innerHTML, text 주의해서 사용. 성능저하+속성이벤트 삭제
+
+      for (let i = 0; i < 10; i++) {
+        let boxElem = document.createElement('div');
+        boxElem.classList.add('box');
+        divElem.appendChild(boxElem);
+      }
+    </script>
+  </body>
+</html>

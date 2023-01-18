@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬라이더</title>
+    <link rel="stylesheet" href="../03_js/slider.css" />
+  </head>
+  <body>
+    <div class="slideContainer">
+      <ul class="slideWrapper">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <button class="btnSlide prev">&lt;</button>
+      <button class="btnSlide next">&gt;</button>
+    </div>
+
+    <div class="btnContainer">
+      <button id="btn1">1</button>
+      <button id="btn2">2</button>
+      <button id="btn3">3</button>
+    </div>
+
+    <script>
+      //   let btnContainer = document.querySelector('.btnContainer');
+      let btn = document.querySelectorAll('.btnContainer button');
+      let slideWrapper = document.querySelector(
+        '.slideContainer .slideWrapper'
+      );
+      let slideWrapperList = document.querySelectorAll(
+        '.slideContainer .slideWrapper li'
+      );
+
+      let btnSlide = document.querySelectorAll('.btnSlide');
+
+      let indexValue = 100;
+      let appIndex = 0;
+
+      let changeSlide = (idx) => {
+        if (idx < 0 || idx > slideWrapperList.length - 1) return;
+        appIndex = idx;
+        slideWrapper.style.transform = `translateX(${-idx * indexValue}vw)`;
+      };
+
+      btn.forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+          changeSlide(idx);
+        });
+      });
+
+      btnSlide.forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+          changeSlide(appIndex + 2 * idx - 1);
+        });
+      });
+    </script>
+  </body>
+</html>

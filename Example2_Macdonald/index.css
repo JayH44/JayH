@@ -34,17 +34,17 @@ header {
   display: flex;
   justify-content: center;
   background-color: #fff;
-  height: 400px;
+  height: 350px;
   max-height: 80px;
 
-  position: fixed;
+  /* position: fixed; */
   z-index: 100;
   overflow: hidden;
 }
 
 header:hover {
   overflow: visible;
-  max-height: 400px;
+  max-height: 350px;
 }
 
 .wrapper {
@@ -84,7 +84,7 @@ nav {
 
 .gnbListDepth1 > li:hover .gnbListDepth2::before {
   display: block;
-  content: "";
+  content: '';
   width: 100%;
   height: 3px;
   background-color: green;
@@ -153,14 +153,19 @@ nav {
 }
 
 main {
-  padding: 80px 0 0;
+  /* padding: 80px 0 0; */
 }
 
 #banner {
   position: relative;
   width: 100vw;
   min-width: 1280px;
-  overflow: clip;
+  overflow: hidden;
+}
+
+#banner .slideList {
+  display: flex;
+  transition: transform 0.4s;
 }
 
 #banner img {
@@ -182,14 +187,16 @@ main {
 
 #banner .btnSlide .prev {
   left: 0;
-  background: url("https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png")
+  background: url('https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png')
     0 0 no-repeat;
+  cursor: pointer;
 }
 
 #banner .btnSlide .next {
   right: 0;
-  background: url("https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png")
+  background: url('https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png')
     0 -90px no-repeat;
+  cursor: pointer;
 }
 
 #banner .controls {
@@ -207,7 +214,7 @@ main {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: url("https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png") -92px
+  background: url('https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png') -92px
     0px no-repeat;
 
   cursor: pointer;
@@ -223,7 +230,7 @@ main {
 }
 
 #banner .controls .btnPlay:hover {
-  background: url("https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png") -92px -36px
+  background: url('https://www.mcdonalds.co.kr/kor/images/main/bg_swiper_new.png') -92px -36px
     no-repeat;
 }
 
@@ -338,7 +345,7 @@ footer .footerRight a {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: url("https://www.mcdonalds.co.kr/kor/images/common/ico_sns.png") 0
+  background: url('https://www.mcdonalds.co.kr/kor/images/common/ico_sns.png') 0
     0px no-repeat;
   overflow: hidden;
 
@@ -363,7 +370,7 @@ footer .footerRight a:nth-child(5) {
   border-radius: 0;
   background: 0;
 
-  background-image: url("https://www.mcdonalds.co.kr/kor/images/common/web_accessibility.png");
+  background-image: url('https://www.mcdonalds.co.kr/kor/images/common/web_accessibility.png');
   background-position: center;
   background-size: contain;
 }
@@ -382,7 +389,7 @@ main #aside a:nth-child(1) {
   height: 121px;
   overflow: hidden;
   text-indent: -9999px;
-  background: url("https://www.mcdonalds.co.kr/kor/images/common/btn_story_04.png")
+  background: url('https://www.mcdonalds.co.kr/kor/images/common/btn_story_04.png')
     no-repeat center 0;
   margin-bottom: 20px;
 }
@@ -393,7 +400,7 @@ main #aside a:nth-child(2) {
   height: 121px;
   overflow: hidden;
   text-indent: -9999px;
-  background: url("https://www.mcdonalds.co.kr/kor/images/common/btn_delivery_04.png")
+  background: url('https://www.mcdonalds.co.kr/kor/images/common/btn_delivery_04.png')
     no-repeat center 0;
   margin-bottom: 20px;
 }
@@ -405,7 +412,7 @@ main #aside a:nth-child(3) {
   width: 51px;
   height: 48px;
   margin: 0 0 0 650px;
-  background: url("https://www.mcdonalds.co.kr/kor/images/common/btn_top_04.png")
+  background: url('https://www.mcdonalds.co.kr/kor/images/common/btn_top_04.png')
     0 14px no-repeat;
   text-indent: -9999px;
   font-size: 1px;

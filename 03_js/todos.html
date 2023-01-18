@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./todos.css" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <h1>TODOS</h1>
+
+    <div class="inputBox">
+      <form action="">
+        <input type="text" />
+        <button class="btnSubmit">등록</button>
+        <!-- <button class="btnSave" type="button">저장</button> -->
+      </form>
+    </div>
+
+    <ul class="todoList">
+      <!-- <li>
+        <div class="text">HTML 배우기</div>
+        <button class="btnDelete">삭제</button>
+      </li> -->
+    </ul>
+
+    <script>
+      let inputValue = document.querySelector('.inputBox input'),
+        btnSubmit = document.querySelector('.inputBox .btnSubmit'),
+        todoList = document.querySelector('.todoList'),
+        formElem = document.querySelector('.inputBox form'),
+        btnSave = document.querySelector('.inputBox .btnSave'),
+        todoArr = JSON.parse(localStorage.getItem('todos')) || [],
+        arrId = todoArr.length - 1 || 0;
+
+      let save = () => localStorage.setItem('todos', JSON.stringify(todoArr));
+
+      let render = (text) => {
+        todoList.innerHTML += `<li>
+            <div class="text">${text}</div>
+            <button class="btnModify" data-id=${arrId}>수정</button>
+            <button class="btnDelete" data-id=${arrId}>삭제</button>
+            </li>`;
+        todoArr.push({ arrId, text });
+        arrId++;
+
+        save();
+        inputValue.value = '';
+        inputValue.focus();
+      };
+
+      let renderByArr = (arrT) => {
+        arrT.forEach((arr) => {
+          todoList.innerHTML += `<li>
+            <div class="text">${arr.text}</div>
+            <button class="btnModify" data-id=${arr.arrId}>수정</button>
+            <button class="btnDelete" data-id=${arr.arrId}>삭제</button>
+            </li>`;
+        });
+      };
+
+      renderByArr(todoArr);
+      inputValue.focus();
+
+      formElem.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (inputValue.value) {
+          render(inputValue.value);
+        } else {
+          alert('빈문자입니다.');
+          inputValue.focus();
+        }
+      });
+
+      todoList.addEventListener('click', (e) => {
+        if (e.target.matches('.btnDelete')) {
+          todoArr = todoArr.filter(
+            (arr) => arr.arrId !== parseInt(e.target.dataset.id)
+          );
+          e.target.parentNode.remove();
+        }
+
+        if (e.target.matches('.btnModify')) {
+          let inputStr = prompt();
+          e.target.parentNode.querySelector('.text').innerText = inputStr;
+          todoArr[parseInt(e.target.dataset.id) - 1].text = inputStr;
+          //   todoArr = todoArr.filter(
+          //     (arr) => arr.arrId !== parseInt(e.target.dataset.id)
+          //   );
+          //   e.target.parentNode.remove();
+        }
+      });
+
+      window.addEventListener('beforeunload', save);
+
+      //   btnSave.addEventListener('click', save);
+
+      //   inputValue.addEventListener('keydown', (e) => {
+      //     if (e.key === 'Enter') {
+      //       btnSubmit.click();
+      //     }
+      //   });
+    </script>
+  </body>
+</html>

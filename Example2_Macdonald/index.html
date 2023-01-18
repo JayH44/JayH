@@ -92,10 +92,24 @@
               />
             </a>
           </li>
+          <li>
+            <a href=""
+              ><img
+                src="https://www.mcdonalds.co.kr/upload/main/banner/1671783212807.jpg"
+                alt="맥행운버거"
+            /></a>
+          </li>
+          <li>
+            <a href=""
+              ><img
+                src="https://www.mcdonalds.co.kr/upload/main/banner/1661353335423.jpg"
+                alt="맥런치"
+            /></a>
+          </li>
         </ul>
         <div class="btnSlide">
-          <div class="prev"></div>
-          <div class="next"></div>
+          <div class="button prev"></div>
+          <div class="button next"></div>
         </div>
 
         <div class="controls">
@@ -239,5 +253,21 @@
     </footer>
 
     <br /><br /><a href="/">메인페이지로</a>
+
+    <script>
+      let slideList = document.querySelector('.slideList'),
+        btnSlide = document.querySelectorAll('.btnSlide .button'),
+        appIndex = 0;
+
+      console.log(btnSlide);
+      btnSlide.forEach((btn, idx) => {
+        btn.addEventListener('click', () => {
+          let tempIndex = appIndex + 2 * idx - 1;
+          if (tempIndex < 0 || tempIndex > 2) return;
+          appIndex = tempIndex;
+          slideList.style.transform = `translateX(${-100 * appIndex}%)`;
+        });
+      });
+    </script>
   </body>
 </html>
