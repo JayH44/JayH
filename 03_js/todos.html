@@ -32,9 +32,12 @@
         formElem = document.querySelector('.inputBox form'),
         btnSave = document.querySelector('.inputBox .btnSave'),
         todoArr = JSON.parse(localStorage.getItem('todos')) || [],
-        arrId = todoArr.length - 1 || 0;
+        arrId = todoArr.length ? todoArr.length-1 : 0;
 
-      let save = () => localStorage.setItem('todos', JSON.stringify(todoArr));
+      let save = () => {
+           
+        localStorage.setItem('todos', JSON.stringify(todoArr));
+      };
 
       let render = (text) => {
         todoList.innerHTML += `<li>
@@ -51,13 +54,16 @@
       };
 
       let renderByArr = (arrT) => {
-        arrT.forEach((arr) => {
+        arrT.forEach((arr, idx) => {
           todoList.innerHTML += `<li>
             <div class="text">${arr.text}</div>
-            <button class="btnModify" data-id=${arr.arrId}>수정</button>
-            <button class="btnDelete" data-id=${arr.arrId}>삭제</button>
+            <button class="btnModify" data-id=${idx}>수정</button>
+            <button class="btnDelete" data-id=${idx}>삭제</button>
             </li>`;
         });
+        if (arrId > 0){
+        arrId++;
+      }
       };
 
       renderByArr(todoArr);
@@ -75,16 +81,23 @@
 
       todoList.addEventListener('click', (e) => {
         if (e.target.matches('.btnDelete')) {
-          todoArr = todoArr.filter(
-            (arr) => arr.arrId !== parseInt(e.target.dataset.id)
-          );
+          todoArr.splice(parseInt(e.target.dataset.id),1);   
           e.target.parentNode.remove();
+          todoArr.forEach((arr,idx) => {
+            arr.arrId = idx;
+          });   
+          if(arrId>0){
+            arrId--;
+          }
+          todoList.innerHTML = "";
+          renderByArr(todoArr);
+          
         }
 
         if (e.target.matches('.btnModify')) {
           let inputStr = prompt();
           e.target.parentNode.querySelector('.text').innerText = inputStr;
-          todoArr[parseInt(e.target.dataset.id) - 1].text = inputStr;
+          todoArr[parseInt(e.target.dataset.id)].text = inputStr;
           //   todoArr = todoArr.filter(
           //     (arr) => arr.arrId !== parseInt(e.target.dataset.id)
           //   );
