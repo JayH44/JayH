@@ -1,14 +1,12 @@
-import Hello from './components/Hello';
+import Users from './components/Users';
 
 function App() {
+  // const [active, setActive] = useState(true);
   return (
     <>
-      <Hello title='React' color='yellow' />
-      <Hello title='Jay' color='green' />
-      <Hello />
-      <Hello>
-        <p>자식요소 입니다.</p>
-      </Hello>
+      {/*       <button onClick={() => setActive(!active)}>토글</button>
+      {active && <Effect />} */}
+      <Users />
     </>
   );
 }
