@@ -2,9 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 function TodoHeader() {
+  const dateStr = new Date().toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'narrow',
+    day: 'numeric',
+    // dateStyle: 'full',
+  });
+
   return (
     <Container>
-      <DateText>2023년 1월 27일</DateText>
+      <DateText>{dateStr}</DateText>
       <CountText>완료: 0/4</CountText>
     </Container>
   );

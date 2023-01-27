@@ -10,7 +10,7 @@ function TodoInput() {
   );
 }
 
-const Container = styled.div`
+const Container = styled.form`
   border-top: 1px solid ${({ theme }) => theme.colors.bd_color};
   padding: 10px;
 `;
@@ -34,7 +34,17 @@ const Button = styled.button`
   color: #fff;
   font-weight: 700;
 
+  transition: background-color 0.4s;
+
   cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.hover_color};
+  }
+
+  &:active {
+    background-color: ${({ theme }) => theme.colors.active_color};
+  }
 `;
 
 export default TodoInput;
