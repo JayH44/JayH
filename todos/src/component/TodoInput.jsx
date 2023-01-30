@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-function TodoInput() {
+function TodoInput({ dispatch }) {
+  const [text, setText] = useState('');
+  const inputRef = useRef();
+  const nextId = useRef(4);
+  const handleText = (e) => {
+    setText(e.target.value);
+  };
+
+  useEffect(() => inputRef.current.focus(), []);
+
+  const submitTodo = (e) => {
+    if (text === '') {
+      alert('할일을 입력해 주세요');
+      return;
+    }
+    e.preventDefault();
+    dispatch({ type: 'SUBMIT_TODO', nextId, text });
+    setText('');
+    inputRef.current.focus();
+  };
+
   return (
-    <Container>
-      <Input placeholder='할일을 입력해 주세요' />
+    <Container onSubmit={submitTodo}>
+      <Input
+        placeholder='할일을 입력해 주세요'
+        value={text}
+        onChange={handleText}
+        ref={inputRef}
+      />
       <Button>등록</Button>
     </Container>
   );
