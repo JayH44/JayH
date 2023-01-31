@@ -1,13 +1,15 @@
-import React from 'react';
 import styled from 'styled-components';
+import { useTodoState } from '../context/todos';
 
-function TodoHeader({ todos }) {
+function TodoHeader() {
   const dateStr = new Date().toLocaleDateString('ko-KR', {
     // year: 'numeric',
     // month: 'narrow',
     // day: 'numeric',
     dateStyle: 'full',
   });
+
+  const todos = useTodoState();
 
   const percent = Math.floor(
     (todos.filter((todo) => todo.done).length / todos.length) * 100

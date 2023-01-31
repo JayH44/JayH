@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useTodoDispatch } from '../context/todos';
 
-function TodoInput({ dispatch }) {
+function TodoInput() {
   const [text, setText] = useState('');
   const inputRef = useRef();
   const nextId = useRef(4);
@@ -9,6 +10,7 @@ function TodoInput({ dispatch }) {
     setText(e.target.value);
   };
 
+  const dispatch = useTodoDispatch();
   useEffect(() => inputRef.current.focus(), []);
 
   const submitTodo = (e) => {

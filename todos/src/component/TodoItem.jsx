@@ -5,8 +5,10 @@ import {
   AiFillCheckCircle,
   AiOutlineDelete,
 } from 'react-icons/ai';
+import { useTodoDispatch } from '../context/todos';
 
-function TodoItem({ todo, dispatch }) {
+function TodoItem({ todo }) {
+  const dispatch = useTodoDispatch();
   const removeTodo = (id) => {
     if (window.confirm('삭제하시겠습니까?'))
       dispatch({ type: 'REMOVE_TODO', id });
@@ -15,6 +17,7 @@ function TodoItem({ todo, dispatch }) {
   const toggleTodo = (id) => {
     dispatch({ type: 'TOGGLE_TODO', id });
   };
+
   return (
     <Container done={todo.done}>
       <p onClick={() => toggleTodo(todo.id)}>
