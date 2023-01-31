@@ -1,0 +1,41 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "text": "API 연동 연습하기",
+      "done": true
+    },
+    {
+      "id": 2,
+      "text": "TDMB 가입하기",
+      "done": false
+    },
+    {
+      "text": "삭제했다 등록하기",
+      "done": false,
+      "id": 5
+    },
+    {
+      "text": "ㅁㅇㄹㄴㅁㄹ",
+      "done": true,
+      "id": 6
+    },
+    {
+      "text": "ㅁㅇㄹㄴㅁㄹ",
+      "done": false,
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "text": "이것은 댓글입니다.",
+      "done": false
+    },
+    {
+      "text": "댓글을 등록해보자",
+      "done": false,
+      "id": 2
+    }
+  ]
+}
