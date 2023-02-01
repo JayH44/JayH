@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function PostEdit({ id, toggle, toggleEditing }) {
+  const [searchParmas] = useSearchParams();
+  const postId = searchParmas.get('id');
+  const newId = id || postId;
+
   const [input, setInput] = useState({
     title: '',
     body: '',
   });
+
+  useEffect(() => {
+    if (newId) {
+      axios
+        .get('http://localhost:5000/posts/' + newId)
+        .then(({ data }) => setInput(data))
+        .catch(console.log);
+    }
+  }, [newId]);
 
   const { title, body } = input;
   const handleInput = (e) => {
@@ -25,23 +38,21 @@ function PostEdit({ id, toggle, toggleEditing }) {
         return;
       }
 
-      const res = !toggle
-        ? await axios.post('http://localhost:5000/posts', {
-            title,
-            body,
-          })
-        : await axios.patch('http://localhost:5000/posts/' + id, {
-            title,
-            body,
-          });
+      const url = `http://localhost:5000/posts/${newId || ''}`;
+      const method = newId ? 'patch' : 'post';
+      const res = await axios[method](url, {
+        title,
+        body,
+      });
+
       if (res.status === 201) {
         alert('등록에 성공했습니다.');
-        navigate('/post/' + res.data.id);
       }
       if (res.status === 200) {
         alert('수정했습니다.');
-        toggleEditing();
+        id && toggleEditing();
       }
+      navigate('/post/' + res.data.id);
     } catch (err) {
       throw new Error('등록에 실패했습니다.');
     }
@@ -52,17 +63,27 @@ function PostEdit({ id, toggle, toggleEditing }) {
       <div>
         <label>
           제목
-          <input name='title' onChange={handleInput} type='text' />
+          <input
+            name='title'
+            value={input.title}
+            onChange={handleInput}
+            type='text'
+          />
         </label>
       </div>
       <div>
         <label>
           내용
-          <input name='body' onChange={handleInput} type='text' />
+          <input
+            name='body'
+            value={input.body}
+            onChange={handleInput}
+            type='text'
+          />
         </label>
 
         <button onClick={handleSubmit}>
-          {!toggle ? '등록하기' : '수정하기'}
+          {!toggle && !postId ? '등록하기' : '수정하기'}
         </button>
       </div>
     </Container>
