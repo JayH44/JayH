@@ -26,16 +26,36 @@
       "id": 7
     }
   ],
-  "comments": [
+  "posts": [
     {
       "id": 1,
-      "text": "이것은 댓글입니다.",
-      "done": false
+      "title": "React Router",
+      "body": "글내용 입니다..."
     },
     {
-      "text": "댓글을 등록해보자",
-      "done": false,
+      "title": "새로운 제목",
+      "body": "자세한 내용...",
       "id": 2
+    },
+    {
+      "title": "이동하는지 테스트",
+      "body": "과연?",
+      "id": 3
+    },
+    {
+      "title": "수정최종",
+      "body": "잘된다",
+      "id": 4
+    },
+    {
+      "title": "다시수정",
+      "body": "렌더링",
+      "id": 5
+    },
+    {
+      "title": "5차수정",
+      "body": "바로반영?",
+      "id": 6
     }
   ]
 }
