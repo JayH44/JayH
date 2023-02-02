@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { tmdbAxios } from '../../api/tmdbAxios';
 
 function Header() {
+  const [leng, setLeng] = useState('ko-kr');
+  const handleLeng = (text) => {
+    setLeng(text);
+    tmdbAxios.defaults.params.language = leng;
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -22,6 +29,11 @@ function Header() {
             </li>
           </ul>
         </NavBar>
+
+        <LengBar>
+          <Leng onClick={() => handleLeng('en-us')}>EN</Leng>
+          <Leng onClick={() => handleLeng('ko-kr')}>KR</Leng>
+        </LengBar>
       </Wrapper>
     </Container>
   );
@@ -36,6 +48,8 @@ const Wrapper = styled.div`
   max-width: 900px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
   gap: 20px;
   color: white;
 
@@ -56,8 +70,12 @@ const NavBar = styled.nav`
   }
 `;
 
-// const SecondBar = styled.ul`
-//   opacity: 1;
-// `;
+const LengBar = styled.ul`
+  display: flex;
+  gap: 10px;
+`;
+const Leng = styled.li`
+  cursor: pointer;
+`;
 
 export default Header;

@@ -1,12 +1,34 @@
+import { useState } from 'react';
 import styled, { css } from 'styled-components';
+import { tmdbAxios } from '../../api/tmdbAxios';
 
-function TitleBox({ title, tabList }) {
+function TitleBox({ title, filter, setState }) {
+  const [filterList, setFilterList] = useState(filter);
+  const handleFilter = (id) => {
+    setFilterList(
+      filterList.map((filter) =>
+        filter.id === id
+          ? { ...filter, active: true }
+          : { ...filter, active: false }
+      )
+    );
+    const { url } = filterList.find((filter) => filter.id === id);
+    tmdbAxios.get(url).then(({ data }) => setState(data.results));
+  };
+
   return (
     <Container>
       <h2>{title}</h2>
       <TabList>
-        <TabItem active={true}>오늘</TabItem>
-        <TabItem active={false}>이번주</TabItem>
+        {filterList.map((filter) => (
+          <TabItem
+            key={filter.id}
+            active={filter.active}
+            onClick={() => handleFilter(filter.id)}
+          >
+            {filter.text}
+          </TabItem>
+        ))}
       </TabList>
     </Container>
   );
@@ -33,9 +55,10 @@ const TabList = styled.ul`
 `;
 
 const TabItem = styled.li`
-  padding: 1px 15px;
+  padding: 2px 15px;
   cursor: pointer;
   border-radius: 10px;
+  transition: background-color, color 0.8s;
 
   ${({ active }) =>
     active &&
