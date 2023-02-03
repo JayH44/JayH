@@ -3,8 +3,8 @@ import ContentList from '../component/movie_list/ContentList';
 
 const filters = {
   trend: [
-    { id: 1, text: '오늘', url: 'trending/all/day', active: true },
-    { id: 2, text: '이번주', url: 'trending/all/week', active: false },
+    { id: 1, text: 'Today', url: 'trending/all/day', active: true },
+    { id: 2, text: 'This Week', url: 'trending/all/week', active: false },
   ],
 
   popular: [
@@ -14,11 +14,19 @@ const filters = {
   ],
 };
 
-function Home() {
+function Home({ leng }) {
   return (
     <Container>
-      <ContentList title='트렌딩' filter={filters.trend} />
-      <ContentList title="What's Popular?" filter={filters.popular} />
+      <ContentList
+        title={leng === 'ko-kr' ? '트렌딩' : 'Trending'}
+        filter={filters.trend}
+        leng={leng}
+      />
+      <ContentList
+        title="What's Popular?"
+        filter={filters.popular}
+        leng={leng}
+      />
       {/* <ContentList title='Free to Watch' /> */}
     </Container>
   );

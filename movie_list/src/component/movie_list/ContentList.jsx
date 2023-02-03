@@ -4,13 +4,16 @@ import { tmdbAxios } from '../../api/tmdbAxios';
 import ContentItem from './ContentItem';
 import TitleBox from './TitleBox';
 
-function ContentList({ title, filter }) {
+function ContentList({ title, filter, leng }) {
   const [state, setState] = useState(null);
 
   useEffect(() => {
-    tmdbAxios.get(filter[0].url).then(({ data }) => setState(data.results));
-  }, [filter]);
-
+    tmdbAxios
+      .get(filter[0].url, {
+        params: { language: leng },
+      })
+      .then(({ data }) => setState(data.results));
+  }, [filter, leng]);
   if (!state) return;
 
   return (

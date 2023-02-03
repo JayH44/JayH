@@ -3,7 +3,7 @@ import { tmdbAxios } from '../api/tmdbAxios';
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
-function MovieDetail() {
+function MovieDetail({ leng }) {
   const { pathname } = useLocation();
   const [view, setView] = useState(null);
 
@@ -11,14 +11,14 @@ function MovieDetail() {
     tmdbAxios
       .get(pathname, {
         params: {
-          language: 'ko-kr',
+          language: leng,
         },
       })
       .then(({ data }) => {
         //   console.log(data);
         setView(data);
       });
-  }, [pathname]);
+  }, [pathname, leng]);
 
   if (!view) return;
   const { title, release_date, overview, poster_path, backdrop_path } = view;
