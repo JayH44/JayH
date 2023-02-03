@@ -12,6 +12,7 @@ function TitleBox({ title, filter, setState }) {
           : { ...filter, active: false }
       )
     );
+
     const { url } = filterList.find((filter) => filter.id === id);
     tmdbAxios.get(url).then(({ data }) => setState(data.results));
   };

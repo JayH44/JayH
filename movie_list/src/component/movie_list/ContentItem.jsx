@@ -30,7 +30,17 @@ function ContentItem({ item }) {
   );
 }
 
-const Container = styled.li``;
+const Container = styled.li`
+  animation: smoothAppear 1s;
+
+@keyframes smoothAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const ImgBox = styled.div`
   width: 150px;

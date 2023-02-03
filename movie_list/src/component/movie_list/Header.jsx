@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { tmdbAxios } from '../../api/tmdbAxios';
 
-function Header() {
-  const [leng, setLeng] = useState('ko-kr');
-  const handleLeng = (text) => {
-    setLeng(text);
-    tmdbAxios.defaults.params.language = leng;
-  };
-
+function Header({ handleLeng }) {
   return (
     <Container>
       <Wrapper>
