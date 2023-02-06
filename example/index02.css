@@ -36,7 +36,7 @@ header {
   top: 0;
   left: 0;
   z-index: 100;
-  transition: max-height 1s;
+  transition: max-height 0.4s;
 }
 
 header h1 {
@@ -146,20 +146,92 @@ main {
   margin: 5px 0;
 }
 
+.modalBg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  z-index: 100;
+}
+
+.modalBg.hide {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.modal {
+  position: fixed;
+  width: 400px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.modalBg.hide .modal {
+  transform: translate3d(-50%, 50%, 0);
+  transition: transform 0.3s;
+}
+
+.modal h4 {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.modal p {
+  padding: 5px;
+  position: relative;
+  flex: 1;
+}
+
+.modal .btnBox {
+  padding: 5px;
+  text-align: center;
+}
+.modal .btnBox button {
+  padding: 5px 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  background-color: rgb(117, 191, 255);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btnOptnModal {
+  cursor: pointer;
+}
+
 @media (max-width: 800px) {
   nav.on {
+    transform: translate(-100%);
+    transition: transform 0s 0s;
     opacity: 1;
+    /* transition: transform 0s 0.4s, opacity 0.4s;
+    transform: translateX(0); */
   }
 
   nav {
     opacity: 0;
     position: fixed;
-    left: 0;
+    left: 100%;
     top: 0;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.4);
-    transition: opacity 0.4s;
+    transition: transform 0s 0.4s, opacity 0.4s;
+    transform: translateX(0);
   }
 
   nav ul {
@@ -172,12 +244,12 @@ main {
     width: 200px;
     height: 100vh;
     background-color: white;
+
     transform: translateX(100%);
-    transition: transform 0.5s;
+    transition: transform 0.4s;
   }
 
   nav.on ul {
-    opacity: 1;
     transform: translateX(0);
   }
 
