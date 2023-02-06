@@ -51,6 +51,9 @@ header h1 a {
   flex-basis: 100px;
   font-weight: 600;
 }
+nav {
+  position: relative;
+}
 
 nav ul {
   display: flex;
@@ -65,7 +68,6 @@ nav ul li a {
 
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
 nav ul li a:hover {
@@ -145,20 +147,57 @@ main {
 }
 
 @media (max-width: 800px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  nav.on {
+    opacity: 1;
   }
 
+  nav {
+    opacity: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: opacity 0.4s;
+  }
+
+  nav ul {
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 200px;
+    height: 100vh;
+    background-color: white;
+    transform: translateX(100%);
+    transition: transform 0.5s;
+  }
+
+  nav.on ul {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  nav ul li a {
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 10px;
+  }
+  /* 
   header:hover {
     max-height: 200px;
-  }
+  }*/
 
   .btnSide {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    z-index: 100;
+    cursor: pointer;
   }
 }
