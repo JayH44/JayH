@@ -13,7 +13,6 @@ function CounterContainer() {
   const onIncrease = () => dispatch(increase());
   const onDecrease = () => dispatch(decrease());
   const onSetDiff = (diff) => dispatch(setDiff(diff));
-
   return (
     <Counter
       number={number}
