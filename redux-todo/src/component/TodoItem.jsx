@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { removeTodo, toggleTodo } from '../reducer/todos';
+import { removeTodo, toggleTodo } from '../reducer/todos02';
 
 function TodoItem({ todo }) {
   const { id, text, done } = todo;
@@ -9,8 +9,8 @@ function TodoItem({ todo }) {
 
   return (
     <Container done={done}>
-      <span onClick={() => dispatch(toggleTodo(id))}>{text}</span>
-      <button onClick={() => dispatch(removeTodo(id))}>삭제</button>
+      <span onClick={() => dispatch(toggleTodo({ id }))}>{text}</span>
+      <button onClick={() => dispatch(removeTodo({ id }))}>삭제</button>
     </Container>
   );
 }

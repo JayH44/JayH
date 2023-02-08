@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { createTodo } from '../reducer/todos';
+import { postTodo } from '../api/todos';
+import { createTodo } from '../reducer/todos02';
 
 function TodoInput() {
   const [text, setText] = useState('');
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createTodo(text));
-    setText('');
+    const result = await postTodo(text);
+    if (result.status === 201) {
+      dispatch(createTodo(text));
+      setText('');
+    }
   };
   return (
     <Container>

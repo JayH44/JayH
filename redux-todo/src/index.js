@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
-import { counterReducer } from './reducer/counter';
 import { Provider } from 'react-redux';
-import { todoReducer } from './reducer/todos';
+import counter from './reducer/counter';
+import todo from './reducer/todos02';
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    todo: todoReducer,
+    counter,
+    todo,
   },
 });
 
