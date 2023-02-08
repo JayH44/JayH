@@ -1,0 +1,5 @@
+
+02/08
+Redux Toolkit 상에서
+createSlice 안의 reducer 상태변경에서
+immer 적용/비적용시 동작 코드 차이
