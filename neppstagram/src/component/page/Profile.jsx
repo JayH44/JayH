@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import SignUpForm from '../login/SignUpForm';
+import ProfileBox from '../profile/ProfileBox';
 
-function SignUp() {
+function Profile() {
   return (
     <Container>
-      <SignUpForm />
+      <ProfileBox />
     </Container>
   );
 }
 
 const Container = styled.div`
-  height: 100vh;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export default SignUp;
+export default Profile;

@@ -1,0 +1,58 @@
+import axios from 'axios';
+
+const authAxios = axios.create({
+  baseURL: 'http://101.101.218.43',
+});
+
+const token = localStorage.getItem('access-token') || '';
+
+authAxios.defaults.headers.Authorization = `Bearer ${token}`;
+
+export const signUpUser = async (form) => {
+  try {
+    const { data } = await authAxios.post('users', form);
+    return data;
+  } catch (e) {
+    throw new Error('회원가입에 실패했습니다.');
+  }
+};
+
+export const loginUser = async (form) => {
+  try {
+    const { data } = await authAxios.post('users/signin', form);
+
+    const { token } = data;
+    localStorage.setItem('access-token', token);
+    authAxios.defaults.headers.Authorization = `Bearer ${token}`;
+    return { success: true };
+  } catch (e) {
+    throw new Error('로그인에 실패했습니다.');
+  }
+};
+
+export const getCurrentUser = async () => {
+  try {
+    const { data } = await authAxios.get('users/current');
+    return data;
+  } catch (e) {
+    throw new Error('로그인이 되어있지 않습니다.');
+  }
+};
+
+export const getUsers = async (page) => {
+  try {
+    const result = await authAxios.get('users?page=' + page);
+    console.log(result);
+  } catch (e) {
+    throw new Error('유저 조회에 실패했습니다.');
+  }
+};
+
+export const getPosts = async (page) => {
+  try {
+    const result = await authAxios.get('posts?page=' + page);
+    console.log(result);
+  } catch (e) {
+    throw new Error('게시글 조회에 실패했습니다.');
+  }
+};

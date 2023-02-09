@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { loginUser } from '../../api/auth';
+import { signUpUser } from '../../api/auth';
 import Button from '../common/Button';
 import InputBox from '../common/InputBox';
 
-function LoginForm() {
+function SignUpForm() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
+    name: '',
     email: '',
     password: '',
   });
@@ -22,17 +23,29 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { success } = await loginUser(inputs);
-    if (success) {
-      alert('로그인에 성공하셨습니다.');
-      navigate('/home');
+    const data = await signUpUser(inputs);
+    if (data.success) {
+      alert('회원가입에 성공하셨습니다.');
+      navigate('/login');
     }
   };
 
   return (
     <Container>
-      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
+        <h2>SignUp</h2>
+        <InputBox
+          placeholder='이름을 입력해주세요'
+          active={inputs.name.length > 0}
+        >
+          <input
+            name='name'
+            type='text'
+            value={inputs.name}
+            onChange={handleInputs}
+          />
+        </InputBox>
+
         <InputBox
           placeholder='이메일을 입력해주세요'
           active={inputs.email.length > 0}
@@ -57,11 +70,8 @@ function LoginForm() {
           />
         </InputBox>
         <BtnBox>
-          <Button text='Login' />
-          <Button
-            type='button'
-            text={<Link to='/signup'>{'SignUp'}</Link>}
-          ></Button>
+          <Button type='submit' text='SignUp' onClick={handleSubmit} />
+          <Button type='button' text='Cancel' bgColor='red' />
         </BtnBox>
       </form>
     </Container>
@@ -87,4 +97,4 @@ const BtnBox = styled.div`
   margin-top: 10px;
 `;
 
-export default LoginForm;
+export default SignUpForm;

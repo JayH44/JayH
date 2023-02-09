@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function Button({ text, width, bgColor, color }) {
+function Button({ text, width, bgColor, color, type }) {
   return (
-    <Container width={width} bgColor={bgColor} color={color}>
-      {text}
+    <Container width={width} bgColor={bgColor} color={color} type={type}>
+      <span>{text}</span>
     </Container>
   );
 }
@@ -25,6 +25,12 @@ const Container = styled.button`
 
   & + & {
     margin-top: 3px;
+  }
+  span {
+    font-size: 0.8rem;
+    a {
+      font-size: 0.8rem;
+    }
   }
 `;
 

@@ -55,6 +55,7 @@ const Placeholder = styled.div`
     active &&
     css`
       transform: scale(0.6);
+      font-weight: 600;
     `}
 `;
 
