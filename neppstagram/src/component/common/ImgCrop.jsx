@@ -13,14 +13,13 @@ async function convertToFile(url, filename) {
 
 function ImgCrop({ setOpen, url, onSubmit, filename }) {
   const [cropper, setCropper] = useState();
-  const [croppedData, setCroppedData] = useState();
 
   const getCroppedData = async () => {
     const url = cropper.getCroppedCanvas().toDataURL();
-    setCroppedData(url);
 
     const file = await convertToFile(url, filename);
     onSubmit(file);
+    setOpen(false);
   };
 
   return (
@@ -43,9 +42,9 @@ function ImgCrop({ setOpen, url, onSubmit, filename }) {
           Close
         </Button>
       </BtnBox>
-      <PreviewBox>
+      {/* <PreviewBox>
         <img src={croppedData} alt='' />
-      </PreviewBox>
+      </PreviewBox> */}
     </Background>
   );
 }

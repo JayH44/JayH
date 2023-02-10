@@ -11,7 +11,6 @@ function App() {
   useEffect(() => {
     if (!user.data) dispatch(fetchCurrentUser());
   }, [dispatch, user]);
-  console.log(user);
 
   return (
     <ThemeProvider theme={theme}>

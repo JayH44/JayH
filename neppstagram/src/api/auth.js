@@ -42,7 +42,7 @@ export const getCurrentUser = async () => {
 export const getUsers = async (page) => {
   try {
     const result = await authAxios.get('users?page=' + page);
-    console.log(result);
+    return result;
   } catch (e) {
     throw new Error('유저 조회에 실패했습니다.');
   }
@@ -51,7 +51,7 @@ export const getUsers = async (page) => {
 export const getPosts = async (page) => {
   try {
     const result = await authAxios.get('posts?page=' + page);
-    console.log(result);
+    return result;
   } catch (e) {
     throw new Error('게시글 조회에 실패했습니다.');
   }
@@ -63,5 +63,14 @@ export const patchProfile = async (form) => {
     return data;
   } catch (e) {
     throw new Error('프로필 사진 등록에 실패했습니다.');
+  }
+};
+
+export const createPost = async (form) => {
+  try {
+    const { data } = await authAxios.post('/posts', form);
+    return data;
+  } catch (e) {
+    throw new Error('포스트 등록에 실패했습니다.');
   }
 };

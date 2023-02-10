@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import InputBox from './InputBox';
-import { AiOutlineSearch, AiOutlineUser, AiOutlineHome } from 'react-icons/ai';
+import {
+  AiOutlineSearch,
+  AiOutlineUser,
+  AiOutlineHome,
+  AiOutlineEdit,
+} from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 function Header() {
@@ -35,6 +40,11 @@ function Header() {
             <GnbItem>
               <Link to='search'>
                 <AiOutlineSearch />
+              </Link>
+            </GnbItem>
+            <GnbItem>
+              <Link to='post/edit'>
+                <AiOutlineEdit />
               </Link>
             </GnbItem>
             <GnbItem>
