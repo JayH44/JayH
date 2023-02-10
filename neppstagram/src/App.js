@@ -1,51 +1,23 @@
 import { useEffect } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { getCurrentUser } from './api/auth';
-import Header from './component/common/Header';
-import Redirect from './component/common/Redirect';
+import { useDispatch, useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { fetchCurrentUser } from './redux/user';
 import { Router } from './Router';
 import { theme } from './styles';
 
 function App() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   useEffect(() => {
-    getCurrentUser()
-      .then(() => {
-        console.log('render');
-        Redirect('home');
-      })
-      .catch(() => {
-        alert('로그인 정보가 없어서 로그인 화면으로 이동합니다.');
-        Redirect('login');
-      });
-  }, []);
+    if (!user.data) dispatch(fetchCurrentUser());
+  }, [dispatch, user]);
+  console.log(user);
 
   return (
     <ThemeProvider theme={theme}>
-      <Container>
-        <Header />
-        <Wrapper>
-          <Router />
-        </Wrapper>
-      </Container>
+      <Router />
     </ThemeProvider>
   );
 }
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-  background-color: #eee;
-`;
-
-const Wrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  width: 500px;
-  background-color: #fff;
-  margin: 0 auto;
-`;
 export default App;

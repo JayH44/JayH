@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import ImgCrop from '../common/ImgCrop';
 
 function ProfileBox() {
+  const [open, setOpen] = useState(false);
+  const [url, setUrl] = useState('');
+  const handeInput = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setUrl(reader.result);
+    };
+  };
   return (
     <Container>
-      <ImgBox>
-        <img
-          src='https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG'
-          alt='강아지'
-        />
+      <input id='image' type='file' accept='image/*' onChange={handeInput} />
+      <ImgBox htmlFor='image' onClick={() => setOpen(true)}>
+        <img src={url} alt='' />
       </ImgBox>
       <UserName>Jay</UserName>
+      {open && <ImgCrop setOpen={setOpen} url={url} />}
     </Container>
   );
 }
@@ -22,9 +31,13 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+
+  input {
+    display: none;
+  }
 `;
 
-const ImgBox = styled.div`
+const ImgBox = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,6 +46,7 @@ const ImgBox = styled.div`
   background-color: #eee;
   border-radius: 50%;
   overflow: hidden;
+  cursor: pointer;
 
   img {
     height: 100%;

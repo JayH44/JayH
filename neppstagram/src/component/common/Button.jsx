@@ -1,15 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 
-function Button({ text, width, bgColor, color, type }) {
-  return (
-    <Container width={width} bgColor={bgColor} color={color} type={type}>
-      <span>{text}</span>
-    </Container>
-  );
-}
-
-const Container = styled.button`
+const Button = styled.button`
   display: block;
   width: ${({ width }) => width || 200}px;
   background-color: ${({ bgColor, theme }) =>

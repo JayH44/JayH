@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { loginUser } from '../../api/auth';
+import { fetchCurrentUser } from '../../redux/user';
 import Button from '../common/Button';
 import InputBox from '../common/InputBox';
 
 function LoginForm() {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -22,11 +24,8 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { success } = await loginUser(inputs);
-    if (success) {
-      alert('로그인에 성공하셨습니다.');
-      navigate('/home');
-    }
+    await loginUser(inputs);
+    dispatch(fetchCurrentUser());
   };
 
   return (
@@ -57,11 +56,10 @@ function LoginForm() {
           />
         </InputBox>
         <BtnBox>
-          <Button text='Login' />
-          <Button
-            type='button'
-            text={<Link to='/signup'>{'SignUp'}</Link>}
-          ></Button>
+          <Button>Login</Button>
+          <Button type='button'>
+            <Link to='/signup'>SignUp</Link>
+          </Button>
         </BtnBox>
       </form>
     </Container>

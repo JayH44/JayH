@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { signUpUser } from '../../api/auth';
 import Button from '../common/Button';
@@ -32,8 +32,8 @@ function SignUpForm() {
 
   return (
     <Container>
+      <h2>SignUp</h2>
       <form onSubmit={handleSubmit}>
-        <h2>SignUp</h2>
         <InputBox
           placeholder='이름을 입력해주세요'
           active={inputs.name.length > 0}
@@ -70,8 +70,12 @@ function SignUpForm() {
           />
         </InputBox>
         <BtnBox>
-          <Button type='submit' text='SignUp' onClick={handleSubmit} />
-          <Button type='button' text='Cancel' bgColor='red' />
+          <Button type='submit' onClick={handleSubmit}>
+            SignUp
+          </Button>
+          <Button type='button' bgColor='red'>
+            <Link to='/'>Cancel</Link>
+          </Button>
         </BtnBox>
       </form>
     </Container>
@@ -90,6 +94,7 @@ const Container = styled.div`
     margin-bottom: 20px;
     font-size: 1.4rem;
     font-weight: 700;
+    text-align: center;
   }
 `;
 
