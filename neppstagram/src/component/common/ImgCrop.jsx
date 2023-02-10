@@ -4,11 +4,23 @@ import Button from './Button';
 import { Cropper } from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
-function ImgCrop({ setOpen, url }) {
+async function convertToFile(url, filename) {
+  const res = await fetch(url);
+  const data = await res.blob();
+  const type = url.split(';')[0].split(':').pop();
+  return new File([data], filename, { type });
+}
+
+function ImgCrop({ setOpen, url, onSubmit, filename }) {
   const [cropper, setCropper] = useState();
   const [croppedData, setCroppedData] = useState();
-  const getCroppedData = () => {
-    setCroppedData(cropper.getCroppedCanvas().toDataURL());
+
+  const getCroppedData = async () => {
+    const url = cropper.getCroppedCanvas().toDataURL();
+    setCroppedData(url);
+
+    const file = await convertToFile(url, filename);
+    onSubmit(file);
   };
 
   return (

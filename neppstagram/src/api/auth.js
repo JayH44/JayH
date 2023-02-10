@@ -56,3 +56,12 @@ export const getPosts = async (page) => {
     throw new Error('게시글 조회에 실패했습니다.');
   }
 };
+
+export const patchProfile = async (form) => {
+  try {
+    const { data } = await authAxios.patch('users/profile', form);
+    return data;
+  } catch (e) {
+    throw new Error('프로필 사진 등록에 실패했습니다.');
+  }
+};
