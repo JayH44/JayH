@@ -14,9 +14,11 @@ function PostItem({ post }) {
 
   const handleMouseUp = (e) => {
     if (mouseDownX - e.pageX > 0) {
+      if (idx === imgLength - 1) return;
       setIdx(idx + 1);
       setIsDrag(true);
     } else if (mouseDownX - e.pageX < 0) {
+      if (idx === 0) return;
       setIdx(idx - 1);
       setIsDrag(true);
     } else {
@@ -35,14 +37,14 @@ function PostItem({ post }) {
         {imgLength > 0 && (
           <Link to={'' + post.id} onClick={handleClick}>
             {post.img_list.map((img, idx) => (
-              <img key={idx} src={img.url} alt='' />
+              <img key={img.id} src={img.url} alt='' />
             ))}
           </Link>
         )}
       </ImageWrapper>
       <BtnBox idx={idx}>
-        {post.img_list.map((_, idx) => (
-          <button key={idx} onClick={() => setIdx(idx)}></button>
+        {post.img_list.map((img, idx) => (
+          <button key={img.id} onClick={() => setIdx(idx)}></button>
         ))}
       </BtnBox>
     </ImgBox>

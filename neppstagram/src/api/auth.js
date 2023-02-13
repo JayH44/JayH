@@ -57,6 +57,15 @@ export const getPosts = async (page) => {
   }
 };
 
+export const getPostbyId = async (Id) => {
+  try {
+    const result = await authAxios.get('posts/' + Id);
+    return result;
+  } catch (e) {
+    throw new Error('게시글 조회에 실패했습니다.');
+  }
+};
+
 export const patchProfile = async (form) => {
   try {
     const { data } = await authAxios.patch('users/profile', form);
