@@ -52,8 +52,8 @@ function PostItem({ post }) {
 }
 
 const ImgBox = styled.li`
-  width: 250px;
-  height: 250px;
+  width: 240px;
+  height: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,6 +61,7 @@ const ImgBox = styled.li`
   position: relative;
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.bd_color};
+  border-radius: 10px;
 
   a {
     display: flex;

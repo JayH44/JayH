@@ -8,9 +8,34 @@ import {
   AiOutlineEdit,
 } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { getUsers } from '../../api/auth';
+import SearchResult from './SearchResult';
 
 function Header() {
   const [input, setInput] = useState('');
+  const [userResults, setUserResults] = useState('');
+  const [opacity, setOpacity] = useState(0);
+  const [onBlur, setOnBlur] = useState(true);
+  const handleInput = (e) => {
+    setInput(e.target.value);
+    getUsers(1).then((res) => {
+      const user = res.data.filter((user) =>
+        user.name.toLowerCase().includes(e.target.value)
+      );
+      setUserResults(user);
+      setOpacity(1);
+    });
+  };
+
+  const handleBlur = () => {
+    setOnBlur(true);
+    setOpacity(0);
+
+    setTimeout(() => {
+      setUserResults('');
+    }, 500);
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -27,9 +52,18 @@ function Header() {
           <input
             type='text'
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={handleInput}
+            onFocus={handleInput}
+            onBlur={handleBlur}
           />
         </InputBox>
+        {userResults.length > 0 && (
+          <SearchResult
+            results={userResults}
+            opacity={opacity}
+            onBlur={onBlur}
+          />
+        )}
         <Gnb>
           <GnbList>
             <GnbItem>
@@ -38,7 +72,7 @@ function Header() {
               </Link>
             </GnbItem>
             <GnbItem>
-              <Link to='search'>
+              <Link to='post'>
                 <AiOutlineSearch />
               </Link>
             </GnbItem>
@@ -72,7 +106,10 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Gnb = styled.nav``;
+const Gnb = styled.nav`
+  display: flex;
+  align-items: center;
+`;
 const GnbList = styled.ul`
   display: flex;
   gap: 10px;

@@ -8,7 +8,6 @@ function PostList() {
   useEffect(() => {
     getPosts(1).then((res) => setPost(res.data));
   }, []);
-  console.log(posts);
   if (posts.legnth === 0) return null;
   return (
     <Container>
@@ -20,8 +19,15 @@ function PostList() {
 }
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
+  align-items: center; */
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 5px;
+  padding: 5px;
 `;
 
 export default PostList;

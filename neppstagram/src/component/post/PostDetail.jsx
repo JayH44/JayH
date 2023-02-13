@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import { getPostbyId } from '../../api/auth';
 
 function PostDetail() {
+  const [opacity, setOpacity] = useState(0);
   const [post, setPost] = useState('');
   const { author, img_list } = post;
   const { id } = useParams();
@@ -15,6 +16,12 @@ function PostDetail() {
       setPost(res.data);
     });
   }, [id]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpacity(1);
+    }, 200);
+  }, []);
 
   const handleIndex = (idx) => {
     setIdx(idx);
@@ -39,7 +46,7 @@ function PostDetail() {
   if (!post) return;
 
   return (
-    <Container>
+    <Container opacity={opacity}>
       <Link to='/post'>리스트로 돌아가기</Link>
       <HeaderWrapper>
         <img src={author.profile_url} alt={author.name} />
@@ -66,6 +73,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 10px;
+  opacity: ${({ opacity }) => opacity};
+  transition: opacity 1s;
 `;
 
 const HeaderWrapper = styled.div`
@@ -75,7 +85,7 @@ const HeaderWrapper = styled.div`
   gap: 10px;
   height: 40px;
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
 
   border: 1px solid ${({ theme }) => theme.colors.bd_color};
@@ -88,6 +98,7 @@ const HeaderWrapper = styled.div`
 
 const ImgBox = styled.div`
   position: relative;
+  border-radius: 10px;
   overflow: hidden;
 `;
 

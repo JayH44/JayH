@@ -72,21 +72,21 @@ const Container = styled.div`
   background-color: white;
 `;
 
-const PreviewBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// const PreviewBox = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
 
-  width: 200px;
-  height: 200px;
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-  overflow: hidden;
+//   width: 200px;
+//   height: 200px;
+//   background-color: rgba(0, 0, 0, 0.4);
+//   border-radius: 50%;
+//   overflow: hidden;
 
-  img {
-    width: 100%;
-  }
-`;
+//   img {
+//     width: 100%;
+//   }
+// `;
 
 const BtnBox = styled.div`
   display: flex;

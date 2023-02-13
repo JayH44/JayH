@@ -6,6 +6,21 @@ immer 적용/비적용시 동작 코드 차이
 
 
 02/13
-래퍼를 이동시 위치를 고정할수 없나.
-=> 래퍼 바깥에 버튼 설정
-드래그를 방지하며 드래그 이펙트 설정을 할수는 없나
+래퍼를 이동하여 슬라이드를 구현할때 위치를 고정할수 없나? => 래퍼 바깥에 버튼 설정
+
+드래그와 기본클릭 동작을 방지하며 슬라이드 이펙트 설정을 할수는 없나?
+=> { -webkit-user-drag: none; 으로 설정하고
+onMouseDown 과 onMouseUp 을 통한 좌표값 비교로
+그에 해당하는 인덱스 설정, 드래그 중임을 state 로 
+표현하여 그에 해당하는 기본클릭 동작 방지}
+
+좌표표현 차이 이해    
+1. screenX, screenY
+2. pageX, pageY
+3. clientX, clientY
+4. offsetX, offsetY
+
+리액트에서 active && 요소로 컴포넌트를 껏다킬시에
+active 설정을 setTimeout 으로 지연시키고
+opacity 값을 먼저 조정하면 mount/unmount 시에
+transition 적용가능

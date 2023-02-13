@@ -83,3 +83,23 @@ export const createPost = async (form) => {
     throw new Error('포스트 등록에 실패했습니다.');
   }
 };
+
+export const getUserbyName = async (page, name) => {
+  try {
+    const result = await authAxios.get(
+      'users/search?name=' + name + '?page=' + page
+    );
+    return result;
+  } catch (e) {
+    throw new Error('유저 조회에 실패했습니다.');
+  }
+};
+
+export const getUserbyId = async (id) => {
+  try {
+    const result = await authAxios.get('users/' + id);
+    return result;
+  } catch (e) {
+    throw new Error('유저 조회에 실패했습니다.');
+  }
+};
