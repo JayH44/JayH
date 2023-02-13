@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function SearchResult({ results, opacity, onBlur }) {
   const [op, setOp] = useState(0);
+  const navigate = useNavigate();
+  console.log('results', results);
   useEffect(() => {
     if (opacity) {
       setTimeout(() => {
@@ -13,12 +16,17 @@ function SearchResult({ results, opacity, onBlur }) {
       setOp(0);
     }
   }, [opacity, onBlur]);
+
+  const handleOnClick = (id) => {
+    navigate('users/' + id);
+  };
+
   return (
     <Container op={op}>
       {results.map((res) => (
         <li key={res.id}>
           <img src={res.profile_url} alt='' />
-          <span>{res.name}</span>
+          <span onClick={() => handleOnClick(res.id)}>{res.name}</span>
         </li>
       ))}
     </Container>
@@ -50,6 +58,9 @@ const Container = styled.ul`
       height: 25px;
       border: none;
       border-radius: 50%;
+    }
+    span {
+      cursor: pointer;
     }
   }
 `;

@@ -57,6 +57,15 @@ export const getPosts = async (page) => {
   }
 };
 
+export const getPostsbyUserId = async (page, id) => {
+  try {
+    const result = await authAxios.get('posts?page=' + page + '&userId=' + id);
+    return result;
+  } catch (e) {
+    throw new Error('게시글 조회에 실패했습니다.');
+  }
+};
+
 export const getPostbyId = async (Id) => {
   try {
     const result = await authAxios.get('posts/' + Id);
@@ -91,7 +100,7 @@ export const getUserbyName = async (page, name) => {
     );
     return result;
   } catch (e) {
-    throw new Error('유저 조회에 실패했습니다.');
+    throw new Error('이름으로 유저 조회에 실패했습니다.');
   }
 };
 
@@ -100,6 +109,6 @@ export const getUserbyId = async (id) => {
     const result = await authAxios.get('users/' + id);
     return result;
   } catch (e) {
-    throw new Error('유저 조회에 실패했습니다.');
+    throw new Error('아이디로 유저 조회에 실패했습니다.');
   }
 };

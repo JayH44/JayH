@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const Button = styled.button`
   display: block;
   width: ${({ width }) => width || 200}px;
+  height: ${({ height }) => height || 25}px;
   background-color: ${({ bgColor, theme }) =>
     bgColor || theme.colors.main_color};
   color: ${({ color }) => color || '#fff'};

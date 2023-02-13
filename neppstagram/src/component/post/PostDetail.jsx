@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { getPostbyId } from '../../api/auth';
 
-function PostDetail() {
+function PostDetail({ parentId }) {
   const [opacity, setOpacity] = useState(0);
   const [post, setPost] = useState('');
   const { author, img_list } = post;
   const { id } = useParams();
   const [idx, setIdx] = useState(0);
   const [mouseDownX, setmouseDownX] = useState(0);
+  const navigate = useNavigate();
+  const useId = parentId || id;
 
   useEffect(() => {
-    getPostbyId(id).then((res) => {
+    getPostbyId(useId).then((res) => {
       setPost(res.data);
     });
-  }, [id]);
+  }, [useId]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,14 +45,17 @@ function PostDetail() {
     }
   };
 
+  const handleOnClick = (id) => {
+    navigate('/users/' + id);
+  };
+
   if (!post) return;
 
   return (
     <Container opacity={opacity}>
-      <Link to='/post'>리스트로 돌아가기</Link>
       <HeaderWrapper>
         <img src={author.profile_url} alt={author.name} />
-        <span>{author.name}</span>
+        <span onClick={() => handleOnClick(author.id)}>{author.name}</span>
       </HeaderWrapper>
       <ImgBox onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
         <ImgWrapper idx={idx} multi={img_list.length > 1}>
@@ -72,7 +77,7 @@ function PostDetail() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   padding: 10px;
   opacity: ${({ opacity }) => opacity};
   transition: opacity 1s;
@@ -93,6 +98,10 @@ const HeaderWrapper = styled.div`
   img {
     height: 100%;
     border-radius: 50%;
+  }
+
+  span {
+    cursor: pointer;
   }
 `;
 

@@ -6,6 +6,7 @@ import Main from './component/page/Main';
 import Post from './component/page/Post';
 import Profile from './component/page/Profile';
 import SignUp from './component/page/SignUp';
+import UserDetail from './component/page/UserDetail';
 import PostDetail from './component/post/PostDetail';
 import PostEdit from './component/post/PostEdit';
 import PostList from './component/post/PostList';
@@ -23,6 +24,7 @@ export function Router() {
           <Route path='edit' element={<PostEdit />} />
           <Route path=':id' element={<PostDetail />} />
         </Route>
+        <Route path='users/:id' element={<UserDetail />} />
       </Route>
     </Routes>
   );
