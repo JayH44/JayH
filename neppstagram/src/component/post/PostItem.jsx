@@ -94,7 +94,7 @@ const BtnBox = styled.div`
   gap: 10px;
   justify-content: center;
   align-items: center;
-  width: 40px;
+  width: 100%;
   height: 20px;
   left: 50%;
   transform: translateX(-50%);

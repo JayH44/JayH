@@ -1,11 +1,11 @@
 
----02/08---
+02/08
 Redux Toolkit 상에서
 createSlice 안의 reducer 상태변경에서
 immer 적용/비적용시 동작 코드 차이
 
 
----02/13---
+02/13
 래퍼를 이동하여 슬라이드를 구현할때 위치를 고정할수 없나? => 래퍼 바깥에 버튼 설정
 
 드래그와 기본클릭 동작을 방지하며 슬라이드 이펙트 설정을 할수는 없나?
@@ -25,17 +25,7 @@ active 설정을 setTimeout 으로 지연시키고
 opacity 값을 먼저 조정하면 mount/unmount 시에
 transition 적용가능
 
----02/14---
-cursor: pointer 지정후 상황에따라 풀려면
-none 이 아니라 default 로 변경
+lazy/suspense 시에 transition 적용은?
 
-indexOf vs includes: 편의성 vs 속도
-
-input 태그에 required 설정하고 button 타입이
-submit 일경우 입력란이 비어있을경우 체크는 해주지만
-유효성 체크는 따로 해야한다.
-JS(react) 로 할것인가 HTML5 기본속성으로 할것인가?
-https://jeonghwan-kim.github.io/dev/2020/06/08/html5-form-validation.html
-
-디자인: MUI, ANTD
-로딩바: https://loading.io/
+사진사이즈가 더 작을때 레이아웃은?
+=> min-width 활용

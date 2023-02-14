@@ -5,7 +5,6 @@ import styled from 'styled-components';
 function SearchResult({ results, opacity, onBlur }) {
   const [op, setOp] = useState(0);
   const navigate = useNavigate();
-  console.log('results', results);
   useEffect(() => {
     if (opacity) {
       setTimeout(() => {

@@ -16,9 +16,11 @@ function UserDetail() {
 
   return (
     <Container>
-      {posts.map((post) => (
-        <PostDetail key={post.id} parentId={post.id} />
-      ))}
+      {posts.length > 0 ? (
+        posts.map((post) => <PostDetail key={post.id} parentId={post.id} />)
+      ) : (
+        <div>목록 없음</div>
+      )}
     </Container>
   );
 }

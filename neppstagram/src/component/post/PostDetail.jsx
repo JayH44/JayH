@@ -54,8 +54,15 @@ function PostDetail({ parentId }) {
   return (
     <Container opacity={opacity}>
       <HeaderWrapper>
-        <img src={author.profile_url} alt={author.name} />
-        <span onClick={() => handleOnClick(author.id)}>{author.name}</span>
+        <LeftBox>
+          <img src={author.profile_url} alt={author.name} />
+          <span onClick={() => handleOnClick(author.id)}>{author.name}</span>
+        </LeftBox>
+        <RightBox>
+          <div></div>
+          <div></div>
+          <div></div>
+        </RightBox>
       </HeaderWrapper>
       <ImgBox onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
         <ImgWrapper idx={idx} multi={img_list.length > 1}>
@@ -85,16 +92,22 @@ const Container = styled.div`
 
 const HeaderWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   gap: 10px;
   height: 40px;
   padding: 5px;
-  border-radius: 5px;
   overflow: hidden;
+`;
 
-  border: 1px solid ${({ theme }) => theme.colors.bd_color};
+const LeftBox = styled.div`
+  display: flex;
+  align-items: center;
 
+  gap: 20px;
+  height: 40px;
+  overflow: hidden;
   img {
     height: 100%;
     border-radius: 50%;
@@ -105,7 +118,25 @@ const HeaderWrapper = styled.div`
   }
 `;
 
+const RightBox = styled.div`
+  display: flex;
+  gap: 2px;
+  padding-right: 5px;
+  cursor: pointer;
+
+  div {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: black;
+  }
+`;
+
 const ImgBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-items: center;
+
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -113,8 +144,10 @@ const ImgBox = styled.div`
 
 const ImgWrapper = styled.div`
   display: flex;
+  min-width: 100%;
+
   img {
-    width: 100%;
+    min-width: 100%;
     -webkit-user-drag: none;
   }
 
@@ -136,13 +169,13 @@ const BtnBox = styled.div`
   left: 50%;
   bottom: 1%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 100%;
   height: 40px;
 
   button {
     background-color: rgba(0, 0, 0, 0.7);
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     border: none;
     border-radius: 50%;
     cursor: pointer;
