@@ -57,7 +57,7 @@ const Placeholder = styled.div`
     active &&
     css`
       position: absolute;
-      top: -8px;
+      top: -10px;
       left: 5px;
       color: #6767f1;
       background-color: white;

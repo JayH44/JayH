@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { getPostbyId } from '../../api/auth';
+import { createComment, getPostbyId } from '../../api/auth';
+import Button from '../common/Button';
+import InputBox from '../common/InputBox';
 
 function PostDetail({ parentId }) {
   const [opacity, setOpacity] = useState(0);
@@ -12,6 +14,7 @@ function PostDetail({ parentId }) {
   const [mouseDownX, setmouseDownX] = useState(0);
   const navigate = useNavigate();
   const useId = parentId || id;
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
     getPostbyId(useId).then((res) => {
@@ -49,6 +52,16 @@ function PostDetail({ parentId }) {
     navigate('/users/' + id);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (comment === '') return;
+    if (window.confirm('댓글을 등록하시겠습니까?')) {
+      const form = new FormData();
+      form.append('body', comment);
+      createComment(useId, form).then((res) => console.log(res));
+    }
+  };
+
   if (!post) return;
 
   return (
@@ -77,6 +90,16 @@ function PostDetail({ parentId }) {
         </BtnBox>
       </ImgBox>
       <span>{post.body}</span>
+      <InputBox placeholder='댓글창' active={comment.length > 0}>
+        <input
+          type='text'
+          onChange={(e) => setComment(e.target.value)}
+          value={comment}
+        />
+      </InputBox>
+      <Button type='button' onClick={handleSubmit}>
+        댓글등록
+      </Button>
     </Container>
   );
 }

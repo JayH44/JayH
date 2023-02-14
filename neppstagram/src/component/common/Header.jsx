@@ -102,6 +102,7 @@ const Container = styled.header`
 const Wrapper = styled.div`
   max-width: 500px;
   margin: 0 auto;
+  position: relative;
   display: flex;
   justify-content: space-between;
 `;

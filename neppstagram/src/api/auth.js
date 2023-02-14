@@ -112,3 +112,12 @@ export const getUserbyId = async (id) => {
     throw new Error('아이디로 유저 조회에 실패했습니다.');
   }
 };
+
+export const createComment = async (id, form) => {
+  try {
+    const { data } = await authAxios.post('/comments?postId=' + id, form);
+    return data;
+  } catch (e) {
+    throw new Error('코멘트 등록에 실패했습니다.');
+  }
+};

@@ -37,8 +37,8 @@ const Container = styled.ul`
   background-color: rgba(255, 255, 255, 0.95);
   width: 200px;
   z-index: 10;
-  top: 40px;
-  left: 150px;
+  top: 30px;
+  left: 145px;
   border-radius: 10px;
   opacity: ${({ op }) => op};
   transition: opacity 0.5s;

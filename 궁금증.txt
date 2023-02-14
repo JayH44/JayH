@@ -29,3 +29,10 @@ lazy/suspense 시에 transition 적용은?
 
 사진사이즈가 더 작을때 레이아웃은?
 => min-width 활용
+
+사진순서를 변경하려면?
+=> onDragStart 와 onDrop 을 활용하여
+시작한 index 를 저장하고 드랍했을때의 index를
+바탕으로 사진 배열에 대한 순서를 변경
+(filter를 이용하여 남은 사진 뽑고, 드랍index 를 
+이용하여 splice 로 배열에 삽입)

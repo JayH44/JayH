@@ -22,7 +22,6 @@ function PostEdit() {
   const handleInput = (e) => {
     const files = Array.from(e.target.files);
     setImages(files);
-    console.log(e.target.files);
     setOpen(true);
   };
 
