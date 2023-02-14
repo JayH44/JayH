@@ -44,9 +44,11 @@ const Container = styled.div`
 
 const Placeholder = styled.div`
   color: #aaa;
+  height: 100%;
   font-size: 0.8rem;
   user-select: none;
   display: flex;
+  align-items: center;
   padding: 2.5px 5px;
   transition: transform 0.2s;
   transform-origin: left top;
@@ -54,7 +56,12 @@ const Placeholder = styled.div`
   ${({ active }) =>
     active &&
     css`
-      transform: scale(0.6);
+      position: absolute;
+      top: -8px;
+      left: 5px;
+      color: #6767f1;
+      background-color: white;
+      transform: scale(0.8);
       font-weight: 600;
     `}
 `;

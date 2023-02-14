@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-function PostItem({ post }) {
+function PostItem({ post, op }) {
   const [idx, setIdx] = useState(0);
   const [mouseDownX, setMouseDownX] = useState(0);
   const [isDrag, setIsDrag] = useState(false);
@@ -32,7 +32,7 @@ function PostItem({ post }) {
   };
 
   return (
-    <ImgBox onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
+    <ImgBox onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} op={op}>
       <ImageWrapper idx={idx} multi={imgLength > 1}>
         {imgLength > 0 && (
           <Link to={'' + post.id} onClick={handleClick}>
@@ -62,6 +62,9 @@ const ImgBox = styled.li`
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors.bd_color};
   border-radius: 10px;
+
+  opacity: ${({ op }) => op};
+  transition: opacity 1s;
 
   a {
     display: flex;

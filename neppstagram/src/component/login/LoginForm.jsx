@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -8,6 +8,7 @@ import Button from '../common/Button';
 import InputBox from '../common/InputBox';
 
 function LoginForm() {
+  const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     email: '',
@@ -28,6 +29,23 @@ function LoginForm() {
     dispatch(fetchCurrentUser());
   };
 
+  useEffect(() => {
+    const { email, password } = inputs;
+    const handleValidate = () => {
+      if (email.indexOf('@') === -1) {
+        setIsDisabled(true);
+        return;
+      }
+      if (password.length < 5) {
+        setIsDisabled(true);
+        return;
+      }
+      setIsDisabled(false);
+    };
+
+    handleValidate();
+  }, [inputs]);
+
   return (
     <Container>
       <h2>Login</h2>
@@ -40,6 +58,7 @@ function LoginForm() {
             name='email'
             type='text'
             value={inputs.email}
+            required
             onChange={handleInputs}
           />
         </InputBox>
@@ -51,13 +70,16 @@ function LoginForm() {
           <input
             name='password'
             type='password'
+            required
             value={inputs.password}
             onChange={handleInputs}
           />
         </InputBox>
         <BtnBox>
-          <Button>Login</Button>
-          <Button type='button'>
+          <Button type='submit' disabled={isDisabled}>
+            Login
+          </Button>
+          <Button bgColor='red' type='button'>
             <Link to='/signup'>SignUp</Link>
           </Button>
         </BtnBox>

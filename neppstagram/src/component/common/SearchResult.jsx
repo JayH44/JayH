@@ -24,9 +24,9 @@ function SearchResult({ results, opacity, onBlur }) {
   return (
     <Container op={op}>
       {results.map((res) => (
-        <li key={res.id}>
-          <img src={res.profile_url} alt='' />
-          <span onClick={() => handleOnClick(res.id)}>{res.name}</span>
+        <li key={res.id} onClick={() => handleOnClick(res.id)}>
+          {res.profile_url ? <img src={res.profile_url} alt='' /> : <p />}
+          <span>{res.name}</span>
         </li>
       ))}
     </Container>
@@ -52,6 +52,11 @@ const Container = styled.ul`
     border-bottom: 1px solid ${({ theme }) => theme.colors.bd_color};
     gap: 10px;
     padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eee;
+    }
 
     img {
       width: 25px;
@@ -59,8 +64,11 @@ const Container = styled.ul`
       border: none;
       border-radius: 50%;
     }
-    span {
-      cursor: pointer;
+    p {
+      width: 25px;
+      height: 25px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
     }
   }
 `;

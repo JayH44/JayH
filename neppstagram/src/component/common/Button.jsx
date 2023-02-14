@@ -24,6 +24,13 @@ const Button = styled.button`
       font-size: 0.8rem;
     }
   }
+
+  &:disabled {
+    background-color: #eee;
+    color: black;
+    user-select: none;
+    cursor: default;
+  }
 `;
 
 export default Button;

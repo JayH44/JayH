@@ -45,7 +45,7 @@ function Header() {
           placeholder={
             <>
               <AiOutlineSearch />
-              검색
+              <p>검색</p>
             </>
           }
         >
