@@ -58,3 +58,7 @@ transform 지워지지않게 여러개 적용하려면 '공백' 으로만 여러
 스크롤바에 의해 가로영역변경으로 스타일링이 변할수 있음 => *::-webkit-scrollbar {
     display: none; 
 }
+
+firebase 사용
+인증/dB/hosting
+dB를 어떻게 하면 쉽게 사용할것인가?

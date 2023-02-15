@@ -39,7 +39,7 @@ function Header() {
   return (
     <Container>
       <Wrapper>
-        <h1>Neppstargram</h1>
+        <h1>Jay'stargram</h1>
         <InputBox
           active={input.length > 0}
           placeholder={
@@ -105,6 +105,11 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
 `;
 
 const Gnb = styled.nav`
