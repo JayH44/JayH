@@ -121,3 +121,12 @@ export const createComment = async (id, form) => {
     throw new Error('코멘트 등록에 실패했습니다.');
   }
 };
+
+export const deletePostbyId = async (Id) => {
+  try {
+    const result = await authAxios.delete('posts/' + Id);
+    return result;
+  } catch (e) {
+    throw new Error('게시글 삭제에 실패했습니다.');
+  }
+};

@@ -20,6 +20,21 @@ onMouseDown 과 onMouseUp 을 통한 좌표값 비교로
 3. clientX, clientY
 4. offsetX, offsetY
 
+---02/14---
+cursor: pointer 지정후 상황에따라 풀려면
+none 이 아니라 default 로 변경
+
+indexOf vs includes: 편의성 vs 속도
+
+input 태그에 required 설정하고 button 타입이
+submit 일경우 입력란이 비어있을경우 체크는 해주지만
+유효성 체크는 따로 해야한다.
+JS(react) 로 할것인가 HTML5 기본속성으로 할것인가?
+https://jeonghwan-kim.github.io/dev/2020/06/08/html5-form-validation.html
+
+디자인: MUI, ANTD
+로딩바: https://loading.io/
+
 리액트에서 active && 요소로 컴포넌트를 껏다킬시에
 active 설정을 setTimeout 으로 지연시키고
 opacity 값을 먼저 조정하면 mount/unmount 시에
@@ -36,3 +51,10 @@ lazy/suspense 시에 transition 적용은?
 바탕으로 사진 배열에 대한 순서를 변경
 (filter를 이용하여 남은 사진 뽑고, 드랍index 를 
 이용하여 splice 로 배열에 삽입)
+
+---02/15---
+transform 지워지지않게 여러개 적용하려면 '공백' 으로만 여러개!
+
+스크롤바에 의해 가로영역변경으로 스타일링이 변할수 있음 => *::-webkit-scrollbar {
+    display: none; 
+}

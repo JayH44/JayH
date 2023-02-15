@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { createComment, getPostbyId } from '../../api/auth';
+import { createComment, deletePostbyId, getPostbyId } from '../../api/auth';
 import Button from '../common/Button';
 import InputBox from '../common/InputBox';
 
@@ -15,6 +16,8 @@ function PostDetail({ parentId }) {
   const navigate = useNavigate();
   const useId = parentId || id;
   const [comment, setComment] = useState('');
+  const [showMenu, setShowMenu] = useState(false);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     getPostbyId(useId).then((res) => {
@@ -62,6 +65,17 @@ function PostDetail({ parentId }) {
     }
   };
 
+  const handleRemove = () => {
+    if (window.confirm('삭제하시겠습니까?')) {
+      deletePostbyId(id)
+        .then((res) => {
+          alert(res.data);
+          navigate('/posts');
+        })
+        .catch(console.log);
+    }
+  };
+
   if (!post) return;
 
   return (
@@ -71,10 +85,21 @@ function PostDetail({ parentId }) {
           <img src={author.profile_url} alt={author.name} />
           <span onClick={() => handleOnClick(author.id)}>{author.name}</span>
         </LeftBox>
-        <RightBox>
+        <RightBox onClick={() => setShowMenu(!showMenu)}>
           <div></div>
           <div></div>
           <div></div>
+          {showMenu && (
+            <PostMenu>
+              <li>즐겨찾기</li>
+              {user.data.id === author.id && (
+                <>
+                  <li>수정</li>
+                  <li onClick={handleRemove}>삭제</li>
+                </>
+              )}
+            </PostMenu>
+          )}
         </RightBox>
       </HeaderWrapper>
       <ImgBox onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
@@ -107,10 +132,13 @@ function PostDetail({ parentId }) {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px;
   padding: 10px;
   opacity: ${({ opacity }) => opacity};
-  transition: opacity 1s;
+  transform: translateX(${({ opacity }) => (opacity ? 0 : 100)}%)
+    rotate(${({ opacity }) => (opacity ? 0 : 45)}deg);
+  transition: opacity 1s, transform 0.5s;
 `;
 
 const HeaderWrapper = styled.div`
@@ -121,7 +149,6 @@ const HeaderWrapper = styled.div`
   gap: 10px;
   height: 40px;
   padding: 5px;
-  overflow: hidden;
 `;
 
 const LeftBox = styled.div`
@@ -143,8 +170,14 @@ const LeftBox = styled.div`
 
 const RightBox = styled.div`
   display: flex;
+  align-items: center;
   gap: 2px;
   padding-right: 5px;
+
+  width: 20px;
+  height: 100%;
+
+  position: relative;
   cursor: pointer;
 
   div {
@@ -152,6 +185,28 @@ const RightBox = styled.div`
     height: 3px;
     border-radius: 50%;
     background-color: black;
+  }
+`;
+
+const PostMenu = styled.ul`
+  width: 100px;
+
+  position: absolute;
+  top: 20px;
+  right: 0;
+  z-index: 100;
+
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+
+  li {
+    padding: 2px 10px;
+    margin-bottom: 5px;
+    user-select: none;
+
+    &:hover {
+      background-color: #ccc;
+    }
   }
 `;
 

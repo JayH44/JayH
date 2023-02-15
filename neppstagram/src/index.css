@@ -20,6 +20,9 @@ code {
   font-size: inherit;
   font-weight: 400;
 }
+*::-webkit-scrollbar {
+  display: none;
+}
 
 li {
   list-style: none;
